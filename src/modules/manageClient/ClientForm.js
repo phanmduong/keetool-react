@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import FormInputText from "../../components/common/FormInputText";
 
 const ClientForm = ({updateFormData, client, submit, isSavingClient}) => {
-    console.log(client);
     const {companyName, address, taxNumber, programName} = client;
 
     return (
