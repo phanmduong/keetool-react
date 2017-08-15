@@ -67,6 +67,14 @@ table tr td .avatar-list-staff{
 
 }
 
+.table .checkbox{
+  width: 100%;
+}
+
+.panel-group .panel-title .checkbox{
+  display: inline;
+}
+
 @media screen and (max-width: 768px) {
   .navbar-header{
     display: flex;

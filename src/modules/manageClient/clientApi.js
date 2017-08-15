@@ -59,3 +59,26 @@ export function loadClientTab(clientId) {
 }
 
 
+export function editClientTab(tabs, clientId) {
+    let url = env.MANAGE_API_URL + "/edit-client-tab";
+    let token = localStorage.getItem('token');
+    if (token) {
+        url += "?token=" + token;
+    }
+
+    return axios.post(url, {
+        tabs: tabs,
+        client_id: clientId
+    });
+}
+
+export function setClientTab(clientId) {
+    let url = env.MANAGE_API_URL + "/set-tabs/" + clientId;
+    let token = localStorage.getItem('token');
+    if (token) {
+        url += "?token=" + token;
+    }
+    return axios.get(url);
+
+}
+
