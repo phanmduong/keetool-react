@@ -79,8 +79,7 @@ export function getTokenLocal() {
     let dataLocal = decodeToken(localStorage.getItem(env.NAME_DATA_LOGIN_SAVE_LOCAL));
     return new Promise(function (resolve) {
         dataLocal.then(function (err, data) {
-
-            resolve(err, data.token);
+            resolve(err, data);
         });
     });
 }
