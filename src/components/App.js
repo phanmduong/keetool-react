@@ -1,10 +1,10 @@
 import React from 'react';
-// import {NAME_COMPANY} from '../constants/env';
+import {NAME_COMPANY} from '../constants/env';
 import Loading from "./common/Loading";
 import PropTypes from 'prop-types';
 import TabContainer from "../modules/tab/TabContainer";
 import {Link} from 'react-router';
-import {LINK_LOGO_2}from '../constants/env';
+import {LINK_LOGO_LIGHT}from '../constants/env';
 
 // This is a class-based component because the current
 // version of hot reloading won't hot reload a stateless
@@ -18,12 +18,12 @@ class App extends React.Component {
                      data-image="http://d1j8r0kxyu9tj8.cloudfront.net/libs/material/assets/img/sidebar-1.jpg">
                     <div className="logo">
                         <Link to="/" className="simple-text">
-                            zGroup
+                            {NAME_COMPANY}
                         </Link>
                     </div>
                     <div className="logo logo-mini">
                         <Link to="/" className="simple-text">
-                            <img src={LINK_LOGO_2} className="logo-sidebar"/>
+                            <img src={LINK_LOGO_LIGHT} className="logo-sidebar"/>
                         </Link>
                     </div>
                     <div className="sidebar-wrapper">
@@ -70,7 +70,7 @@ class App extends React.Component {
                                     <span className="icon-bar"></span>
                                     <span className="icon-bar"></span>
                                 </button>
-                                <Link className="navbar-brand" to="/"> zGroup </Link>
+                                <Link className="navbar-brand" to="/"> {NAME_COMPANY} </Link>
                             </div>
                             <div className="collapse navbar-collapse">
                                 <ul className="nav navbar-nav navbar-right">

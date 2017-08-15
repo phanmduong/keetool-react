@@ -32,8 +32,8 @@ a {
 }
 
 .logo-header {
-  height: 50px;
-  width: 50px;
+  height: 30px;
+  width: auto;
   margin-top: 15px;
 }
 
@@ -65,4 +65,12 @@ table tr td .avatar-list-staff{
   border-radius: 50%;
   vertical-align: middle;
 
+}
+
+@media screen and (max-width: 768px) {
+  .navbar-header{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
 }

@@ -135,6 +135,17 @@ export default {
         }
     },
 
+    clientList: {
+        clients: [],
+        isLoadingClients: false,
+        currentPage: 1,
+        totalPages: 1,
+        createClient: {
+            isSavingClient: false,
+            isLoadingClient: false,
+        }
+    },
+
     task: {
         createProject: {
             project: {},

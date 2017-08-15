@@ -14,6 +14,10 @@ import EditRoleContainer from './containers/role/EditRoleContainer';
 import NotFoundPage from './components/NotFoundPage';
 import BasesContainer from "./modules/bases/BasesContainer";
 import CreateBaseContainer from "./modules/bases/CreateBaseContainer";
+import ClientContainer from "./modules/manageClient/ClientContainer";
+import EditClientContainer from "./modules/manageClient/client/EditInfoClientContainer";
+import EditConfigClientContainer from "./modules/manageClient/client/EditConfigClientContainer";
+import EditTabClientContainer from "./modules/manageClient/client/EditTabClientContainer";
 import ProjectListContainer from "./modules/tasks/ProjectListContainer";
 import CreateProjectContainer from "./modules/tasks/CreateProjectContainer";
 import BoardListContainer from "./modules/tasks/BoardListContainer";
@@ -47,6 +51,13 @@ export default (
             <Route path="project/:projectId/boards" component={BoardListContainer}/>
 
             {/*End tasks route*/}
+
+            {/*Begin clients route*/}
+            <Route path="/client/list" component={ClientContainer}/>
+            <Route path="/client/:clientId/info/edit" component={EditClientContainer}/>
+            <Route path="/client/:clientId/tab/edit" component={EditTabClientContainer}/>
+            <Route path="/client/:clientId/config/edit" component={EditConfigClientContainer}/>
+            {/*End clients route*/}
         </Route>
         <Route path="login" component={LoginContainer}/>
         <Route path="*" component={NotFoundPage}/>
