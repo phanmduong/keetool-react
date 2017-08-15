@@ -24,5 +24,10 @@ export function loadClients(page = 1, query = null) {
     };
 }
 
+export function updateCreateClientFormData() {
+    return function () {
+
+    };
+}
 
 

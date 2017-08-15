@@ -21,6 +21,7 @@ import EditTabClientContainer from "./modules/manageClient/client/EditTabClientC
 import ProjectListContainer from "./modules/tasks/ProjectListContainer";
 import CreateProjectContainer from "./modules/tasks/CreateProjectContainer";
 import BoardListContainer from "./modules/tasks/BoardListContainer";
+import CreateClientContainer from "./modules/manageClient/client/CreateClientContainer";
 
 export default (
     <Route>
@@ -54,6 +55,7 @@ export default (
 
             {/*Begin clients route*/}
             <Route path="/client/list" component={ClientContainer}/>
+            <Route path="/client/create" component={CreateClientContainer}/>
             <Route path="/client/:clientId/info/edit" component={EditClientContainer}/>
             <Route path="/client/:clientId/tab/edit" component={EditTabClientContainer}/>
             <Route path="/client/:clientId/config/edit" component={EditConfigClientContainer}/>
