@@ -9,6 +9,7 @@ import * as helper from '../helpers/helper';
 
 
 let self;
+
 class DashboardContainer extends React.Component {
     constructor(props, context) {
         super(props, context);
@@ -21,12 +22,14 @@ class DashboardContainer extends React.Component {
         this.props.loginActions.getUserLocal();
     }
 
-    checkToken(){
+    checkToken() {
         let tokenLocal = helper.getTokenLocal();
-        tokenLocal.then(function () {
-            self.props.loginActions.getUserLocal();
-        }).catch(function () {
-            self.onLogOut();
+        tokenLocal.then(function (err) {
+            if (err) {
+                self.onLogOut();
+            } else {
+                self.props.loginActions.getUserLocal();
+            }
         });
 
         let token = localStorage.getItem('token');
@@ -40,7 +43,7 @@ class DashboardContainer extends React.Component {
 
     onLogOut() {
         helper.removeDataLoginLocal();
-        // localStorage.removeItem('token');
+        localStorage.removeItem('token');
         localStorage.removeItem('user');
         this.context.router.push('login');
         this.props.loginActions.logOut();
@@ -62,7 +65,7 @@ DashboardContainer.contextTypes = {
     router: PropTypes.object
 };
 
-DashboardContainer.propTypes={
+DashboardContainer.propTypes = {
     loginActions: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired
 };
