@@ -165,7 +165,7 @@ class App extends React.Component {
                                 {
                                     new Date().getFullYear()
                                 }
-                                <a href="http://colorme.vn"> color ME</a>
+                                <a href="http://keetool.com"> KEETOOL</a>
                             </p>
                         </div>
                     </footer>

@@ -106,7 +106,7 @@ class ClientContainer extends React.Component {
                             {_.range(1, this.props.totalPages + 1).map(page => {
                                 if (Number(currentPage) === page) {
                                     return (
-                                        <li key={page} className="active">
+                                        <li key={page} className="active btn-rose">
                                             <a onClick={() => this.loadClients(page)}>{page}</a>
                                         </li>
                                     );
