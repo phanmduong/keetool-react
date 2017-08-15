@@ -146,6 +146,18 @@ export default {
         }
     },
 
+    client: {
+        editTab:{
+            isLoadingTab: false,
+            errorTab: false,
+            isLoadingUpdateRole: false,
+            errorUpdateRole: false,
+        },
+        clientFormTab:{},
+        tabListData: []
+    },
+
+
     task: {
         createProject: {
             project: {},

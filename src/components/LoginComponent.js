@@ -134,7 +134,7 @@ class LoginComponent extends React.Component {
                                     {
                                         new Date().getFullYear()
                                     }
-                                    <a href="http://colorme.vn"> colorME</a>
+                                    <a href="http://keetool.com"> KEETOOL</a>
                                 </p>
                             </div>
                         </footer>
