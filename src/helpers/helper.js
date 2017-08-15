@@ -56,13 +56,13 @@ export function encodeToken(data) {
 }
 
 export function decodeToken(token) {
-    return new Promise(function (resolve, reject) {
+    return new Promise(function (resolve) {
         jwt.verify(token, env.SECRET_TOKEN, function (err, decoded) {
 
-            if (err) {
-                reject(err);
-            }
-            resolve(decoded);
+
+                resolve(err, decoded);
+
+
         });
     });
 }
@@ -77,13 +77,10 @@ export function removeDataLoginLocal() {
 
 export function getTokenLocal() {
     let dataLocal = decodeToken(localStorage.getItem(env.NAME_DATA_LOGIN_SAVE_LOCAL));
-    return new Promise(function (resolve, reject) {
-        dataLocal.then(function (data) {
-            if (data) {
-                resolve(data.token);
-            }
-        }).catch(function () {
-            reject(null);
+    return new Promise(function (resolve) {
+        dataLocal.then(function (err, data) {
+
+            resolve(err, data.token);
         });
     });
 }

@@ -74,6 +74,7 @@ class LoginContainer extends React.Component {
                 }
             });
         }
+
         return (
             <LoginComponent
                 updateFormData={this.updateFormData}
