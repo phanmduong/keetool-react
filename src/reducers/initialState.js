@@ -148,13 +148,13 @@ export default {
     },
 
     client: {
-        editTab:{
+        editTab: {
             isLoadingTab: false,
             errorTab: false,
             isLoadingUpdateRole: false,
             errorUpdateRole: false,
         },
-        clientFormTab:{},
+        clientFormTab: {},
         tabListData: []
     },
 
@@ -172,7 +172,15 @@ export default {
             isLoadingProjects: false,
             isSaving: false
         }
-    }
+    },
 
+    config: {
+        configList: {
+            configs: [],
+            isLoadingConfigs: false,
+            currentPage: 1,
+            totalPages: 1
+        }
+    }
 
 };

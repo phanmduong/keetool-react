@@ -22,6 +22,8 @@ import ProjectListContainer from "./modules/tasks/ProjectListContainer";
 import CreateProjectContainer from "./modules/tasks/CreateProjectContainer";
 import BoardListContainer from "./modules/tasks/BoardListContainer";
 import CreateClientContainer from "./modules/manageClient/client/CreateClientContainer";
+import ConfigListContainer from "./modules/config/ConfigListContainer";
+
 
 export default (
     <Route>
@@ -60,6 +62,10 @@ export default (
             <Route path="/client/:clientId/tab/edit" component={EditTabClientContainer}/>
             <Route path="/client/:clientId/config/edit" component={EditConfigClientContainer}/>
             {/*End clients route*/}
+
+            {/*Begin config routes*/}
+            <Route path="/config/list" component={ConfigListContainer}/>
+            {/*End config routes*/}
         </Route>
         <Route path="login" component={LoginContainer}/>
         <Route path="*" component={NotFoundPage}/>
