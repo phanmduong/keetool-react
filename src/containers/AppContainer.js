@@ -40,7 +40,7 @@ class DashboardContainer extends React.Component {
 
     onLogOut() {
         helper.removeDataLoginLocal();
-        localStorage.removeItem('token');
+        // localStorage.removeItem('token');
         localStorage.removeItem('user');
         this.context.router.push('login');
         this.props.loginActions.logOut();
