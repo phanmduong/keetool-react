@@ -18,7 +18,7 @@ export function loadClients(page = 1, query = null) {
                 // totalPages: res.data.paginator.total_pages
             });
         }).catch(error => {
-            throw (error);
+            console.log(error);
         });
 
     };

@@ -14,7 +14,7 @@ export function pingClient(id) {
         clientApi.pingClient(id).then(function (res) {
             dispatch(pingClientSuccess(res.data));
         }).catch(error => {
-            throw (error);
+            console.log(error);
         });
 
     };
@@ -48,7 +48,7 @@ export function editRoleData(tabs, clientTab) {
                 dispatch(editRoleDataSucessful(res));
             }).catch((error) => {
             dispatch(editRoleDataError(error.response.data.error));
-            throw (error);
+            console.log(error);
         });
     };
 }
