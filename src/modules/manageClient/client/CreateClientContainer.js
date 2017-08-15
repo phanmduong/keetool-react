@@ -24,7 +24,7 @@ class CreateClientContainer extends React.Component {
     }
 
     submit() {
-
+        this.props.clientListActions.createClient(this.props.client);
     }
 
     updateFormData(event) {
@@ -51,7 +51,7 @@ class CreateClientContainer extends React.Component {
                             ) : (
                                 <ClientForm
                                     isSavingClient={this.props.isSavingClient}
-                                    base={this.props.client}
+                                    client={this.props.client}
                                     submit={this.submit}
                                     updateFormData={this.updateFormData}/>
                             )}
@@ -66,7 +66,7 @@ class CreateClientContainer extends React.Component {
 CreateClientContainer.propTypes = {
     client: PropTypes.object.isRequired,
     isSavingClient: PropTypes.bool.isRequired,
-    clientListActions: PropTypes.bool.isRequired,
+    clientListActions: PropTypes.object.isRequired,
     isLoadingClient: PropTypes.bool.isRequired
 };
 

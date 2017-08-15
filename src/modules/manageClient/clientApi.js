@@ -4,6 +4,21 @@
 import axios from 'axios';
 import * as env from '../../constants/env';
 
+export function createClient(client) {
+    const {companyName, address, taxNumber, programName} = client;
+    let url = env.MANAGE_API_URL + "/client/create";
+    const token = localStorage.getItem('token');
+    if (token) {
+        url += "?token=" + token;
+    }
+    return axios.post(url, {
+        company_name: companyName,
+        address,
+        tax_number: taxNumber,
+        program_name: programName
+    });
+}
+
 export function deleteClient(client) {
     let url = env.MANAGE_API_URL + "/client/delete/" + client.id;
     const token = localStorage.getItem('token');

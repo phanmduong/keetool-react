@@ -3,33 +3,40 @@ import PropTypes from 'prop-types';
 import FormInputText from "../../components/common/FormInputText";
 
 const ClientForm = ({updateFormData, client, submit, isSavingClient}) => {
+
     const {companyName, address, taxNumber, programName} = client;
 
     return (
-        <form role="form" id="client-form">
-
+        <form onSubmit={(event) => {
+            event.preventDefault();
+            submit();
+        }} role="form" id="client-form">
             <FormInputText
                 placeholder="Nhập tên công ty"
                 label="Tên công ty"
-                name="company_name"
+                name="companyName"
+                required={true}
                 updateFormData={updateFormData}
                 value={companyName}/>
             <FormInputText
                 placeholder="Nhập địa chỉ cơ sở"
                 label="Địa chỉ cơ sở"
                 name="address"
+                required={true}
                 updateFormData={updateFormData}
                 value={address}/>
             <FormInputText
                 placeholder="Nhập mã số thuế"
                 label="Mã số thuế"
-                name="tax_number"
+                name="taxNumber"
+                required={true}
                 updateFormData={updateFormData}
                 value={taxNumber}/>
             <FormInputText
                 placeholder="Nhập tên chương trình"
                 label="Tên chương trình"
-                name="program_name"
+                name="programName"
+                required={true}
                 updateFormData={updateFormData}
                 value={programName}/>
             <div>
@@ -44,9 +51,8 @@ const ClientForm = ({updateFormData, client, submit, isSavingClient}) => {
                     ) :
                     (
                         <button
-                            type="button"
-                            className="btn btn-primary"
-                            onClick={submit}>
+                            type="submit"
+                            className="btn btn-primary">
                             Tải lên
                         </button>
                     )}

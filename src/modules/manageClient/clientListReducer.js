@@ -6,6 +6,30 @@ import initialState from '../../reducers/initialState';
 
 export default function clientListReducer(state = initialState.clientList, action) {
     switch (action.type) {
+        case types.CREATE_CLIENT_SUCCESS:
+            return {
+                ...state,
+                createClient: {
+                    ...state.createClient,
+                    isSavingClient: false
+                }
+            };
+        case types.BEGIN_CREATE_CLIENT:
+            return {
+                ...state,
+                createClient: {
+                    ...state.createClient,
+                    isSavingClient: true
+                }
+            };
+        case types.UPDATE_FORM_CREATE_CLIENT_DATA:
+            return {
+                ...state,
+                createClient: {
+                    ...state.createClient,
+                    client: action.client
+                }
+            };
         case types.BEGIN_LOAD_CLIENTS:
             return Object.assign({}, state, {
                 isLoadingClients: true
@@ -17,7 +41,7 @@ export default function clientListReducer(state = initialState.clientList, actio
                 currentPage: action.currentPage,
                 totalPages: action.totalPages
             });
-   
+
         default:
             return state;
     }
