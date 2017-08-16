@@ -27,6 +27,26 @@ export function loadConfigs(page = 1, query = null) {
     };
 }
 
+export function loadConfigAll() {
+    return function (dispatch) {
+        dispatch({
+            type: types.BEGIN_LOAD_CONFIGS
+        });
+
+        configApi.loadConfigAll().then(function (res) {
+            dispatch({
+                type: types.LOAD_CONFIGS_SUCCESS,
+                configs: res.data.data.configs,
+                currentPage: 1,
+                totalPages: 1,
+            });
+        }).catch(error => {
+            console.error(error);
+        });
+
+    };
+}
+
 export function createConfig(config) {
     return function (dispatch) {
         dispatch({
