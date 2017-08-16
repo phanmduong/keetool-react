@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // import {Link} from "react-router";
-import Switch from 'react-bootstrap-switch';
 import ButtonGroupAction from '../../components/common/ButtonGroupAction';
 
 class ListConfigs extends React.Component {
