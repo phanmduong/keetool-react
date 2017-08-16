@@ -1,7 +1,7 @@
 import React from 'react';
 import FormInputText from '../common/FormInputText';
 import Loading from "../common/Loading";
-import ItemTabParent from './ItemTabParent';
+import ItemTabParent from '../common/ItemTabParent';
 import PropTypes from 'prop-types';
 
 let self;
@@ -50,7 +50,7 @@ class EditRoleComponent extends React.Component {
                                                 required={true}
                                                 type="text"
                                             />
-                                            <div className="form-group">
+                                            <div className="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                                                 {tabsListData.map((tab, index) => {
                                                     if (tab.id > 2 && tab.parent_id === 0) {
                                                         return (
@@ -68,7 +68,7 @@ class EditRoleComponent extends React.Component {
                                                 (
                                                     <button
                                                         type="button"
-                                                        className="btn btn-success disabled"
+                                                        className="btn btn-rose disabled"
                                                     >
                                                         <i className="fa fa-spinner fa-spin"/> Đang cập nhật
                                                     </button>
@@ -77,7 +77,7 @@ class EditRoleComponent extends React.Component {
                                                 (
                                                     <button
                                                         type="button"
-                                                        className="btn btn-success"
+                                                        className="btn btn-rose"
                                                         onClick={this.checkValidate}
                                                     >
                                                         Cập nhật

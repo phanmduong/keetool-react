@@ -1,7 +1,6 @@
 import React from 'react';
-import FormInputText from '../../../components/common/FormInputText';
-import Loading from "../../../components/common/Loading";
-import ItemTabParent from '../../../components/common/ItemTabParent';
+import Loading from "../../../../components/common/Loading";
+import ItemTabParent from '../../../../components/common/ItemTabParent';
 import PropTypes from 'prop-types';
 
 let self;
@@ -9,29 +8,21 @@ let self;
 class EditTabClientComponent extends React.Component {
     constructor(props, context) {
         super(props, context);
-        this.state = {
-            isValidRoleTitle: false,
-        };
-        this.checkValidate = this.checkValidate.bind(this);
         self = this;
     }
 
-    checkValidate() {
-        if ($('#form-edit-role').valid()) {
-            this.props.editRole();
-        }
-    }
-
+    // componentDidUpdate(){
+    //     $.material.init();
+    // }
 
     render() {
         let {tabListData} = this.props;
-        // let {role_title} = this.props.roleForm;
         return (
             <div>
                 <div className="row">
                     <div className="col-md-12">
                         <div className="card">
-                            <form id="form-edit-role" onSubmit={(e) => {
+                            <form  onSubmit={(e) => {
                                 e.preventDefault();
                             }}>
                                 <div className="card-header card-header-icon" data-background-color="rose">
@@ -42,14 +33,7 @@ class EditTabClientComponent extends React.Component {
                                     <h4 className="card-title">Sửa tính năng</h4>
                                     {(this.props.isLoadingTab) ? <Loading/> :
                                         <div>
-                                            {/*<FormInputText*/}
-                                                {/*label="Tên chức vụ"*/}
-                                                {/*name="role_title"*/}
-                                                {/*updateFormData={this.props.updateFormData}*/}
-                                                {/*required={true}*/}
-                                                {/*type="text"*/}
-                                            {/*/>*/}
-                                            <div className="form-group">
+                                            <div className="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                                                 {tabListData.map((tab, index) => {
                                                     if (tab.parent_id === 0) {
                                                         return (
@@ -57,17 +41,17 @@ class EditTabClientComponent extends React.Component {
                                                                 tab={tab}
                                                                 key={index}
                                                                 tabsListData={tabListData}
-                                                                changeCheckTab={()=>{}}
+                                                                changeCheckTab={self.props.changeCheckTab}
                                                             />
                                                         );
                                                     }
                                                 })}
                                             </div>
-                                            {this.props.isLoadingUpdateRole ?
+                                            {this.props.isLoadingUpdateTab ?
                                                 (
                                                     <button
                                                         type="button"
-                                                        className="btn btn-success disabled"
+                                                        className="btn btn-rose disabled"
                                                     >
                                                         <i className="fa fa-spinner fa-spin"/> Đang cập nhật
                                                     </button>
@@ -76,31 +60,10 @@ class EditTabClientComponent extends React.Component {
                                                 (
                                                     <button
                                                         type="button"
-                                                        className="btn btn-success"
-                                                        onClick={this.checkValidate}
+                                                        className="btn btn-rose"
+                                                        onClick={this.props.editTabClient}
                                                     >
                                                         Cập nhật
-                                                    </button>
-                                                )}
-
-
-                                            {this.props.isLoadingDeleteRole ?
-                                                (
-                                                    <button
-                                                        type="button"
-                                                        className="btn btn-danger disabled"
-                                                    >
-                                                        <i className="fa fa-spinner fa-spin"/> Đang xóa
-                                                    </button>
-                                                )
-                                                :
-                                                (
-                                                    <button
-                                                        type="button"
-                                                        className="btn btn-danger"
-                                                        onClick={this.props.deleteRole}
-                                                    >
-                                                        Xóa
                                                     </button>
                                                 )}
                                         </div>
@@ -117,7 +80,11 @@ class EditTabClientComponent extends React.Component {
 
 
 EditTabClientComponent.propTypes = {
-
+    isLoadingTab: PropTypes.bool.isRequired,
+    isLoadingUpdateTab: PropTypes.bool.isRequired,
+    tabListData: PropTypes.array.isRequired,
+    changeCheckTab: PropTypes.func.isRequired,
+    editTabClient: PropTypes.func.isRequired,
 };
 
 

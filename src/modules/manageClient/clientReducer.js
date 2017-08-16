@@ -1,8 +1,7 @@
 import * as types from '../../constants/actionTypes';
 import initialState from '../../reducers/initialState';
-import _ from 'lodash';
 
-// let tabListData;
+let tabListData;
 export default function tabsReducer(state = initialState.client, action) {
 
     switch (action.type) {
@@ -10,81 +9,58 @@ export default function tabsReducer(state = initialState.client, action) {
             return {
                 ...state,
                 ...{
-                    editTab: {
-                        ...state.editTab,
-                        ...{
-                            isLoadingTab: action.isLoading,
-                            errorTab: action.error
-                        }
-                    },
-                    clientFormTab: action.tab
+                    isLoadingTab: action.isLoading,
+                    errorLoadingTab: action.error
                 }
             };
         case types.LOAD_CLIENT_TAB_DATA_SUCCESSFUL:
             return {
                 ...state,
                 ...{
-                    editTab: {
-                        ...state.editTab,
-                        ...{
-                            isLoadingTab: action.isLoading,
-                            errorTab: action.error
-                        }
-                    },
-                    clientFormTab: action.tab,
-                    tabListData: action.tabListData
+                    tabListData: action.tabListData,
+                    isLoadingTab: action.isLoading,
+                    errorLoadingTab: action.error
                 }
             };
         case types.LOAD_CLIENT_TAB_DATA_ERROR:
             return {
                 ...state,
                 ...{
-                    editTab: {
-                        ...state.editTab,
-                        ...{
-                            isLoadingTab: action.isLoading,
-                            errorTab: action.error
-                        }
-                    }
+                    tabListData: action.tabListData,
+                    isLoadingTab: action.isLoading,
+                    errorLoadingTab: action.error
                 }
             };
         case types.BEGIN_EDIT_CLIENT_TAB_DATA:
             return {
                 ...state,
                 ...{
-                    editTab: {
-                        ...state.editTab,
-                        ...{
-                            isLoadingUpdateTab: action.isLoading,
-                            errorUpdateTab: action.error
-                        }
-                    }
+                    isLoadingUpdateTab: action.isLoading,
+                    errorUpdateTab: action.error
                 }
             };
         case types.EDIT_CLIENT_TAB_DATA_SUCCESSFUL:
             return {
                 ...state,
                 ...{
-                    editTab: {
-                        ...state.editTab,
-                        ...{
-                            isLoadingUpdateTab: action.isLoading,
-                            errorUpdateTab: action.error
-                        }
-                    }
+                    isLoadingUpdateTab: action.isLoading,
+                    errorUpdateTab: action.error
                 }
             };
         case types.EDIT_CLIENT_TAB_DATA_ERROR:
             return {
                 ...state,
                 ...{
-                    editTab: {
-                        ...state.editTab,
-                        ...{
-                            isLoadingUpdateTab: action.isLoading,
-                            errorUpdateTab: action.error
-                        }
-                    }
+                    isLoadingUpdateTab: action.isLoading,
+                    errorUpdateTab: action.error
+                }
+            };
+        case types.CHANGE_CHECK_TAB_CLIENT:
+            tabListData = changeCheckTab(state.tabListData, action.tab);
+            return {
+                ...state,
+                ...{
+                    tabListData: tabListData
                 }
             };
         default:
@@ -92,14 +68,19 @@ export default function tabsReducer(state = initialState.client, action) {
     }
 }
 
-function changeDataTabs(tabListData, tabId) {
+function changeCheckTab(tabListData, tab) {
     if (tabListData) {
-        let tabs = [...tabListData];
-        _.remove(tabs, function (tab) {
-            return tab.id === tabId;
+        return tabListData.map((tabItem) => {
+            if (tabItem.id === tab.id) {
+                return {
+                    ...tabItem,
+                    ...tab
+                };
+            } else {
+                return tabItem;
+            }
         });
-
-        return tabs;
     }
+
     return tabListData;
 }

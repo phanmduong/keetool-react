@@ -17,7 +17,7 @@ import CreateBaseContainer from "./modules/bases/CreateBaseContainer";
 import ClientContainer from "./modules/manageClient/ClientContainer";
 import EditClientContainer from "./modules/manageClient/client/EditInfoClientContainer";
 import EditConfigClientContainer from "./modules/manageClient/client/EditConfigClientContainer";
-import EditTabClientContainer from "./modules/manageClient/client/EditTabClientContainer";
+import EditTabClientContainer from "./modules/manageClient/client/editTab/EditTabClientContainer";
 import ProjectListContainer from "./modules/tasks/ProjectListContainer";
 import CreateProjectContainer from "./modules/tasks/CreateProjectContainer";
 import BoardListContainer from "./modules/tasks/BoardListContainer";

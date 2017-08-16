@@ -7,40 +7,26 @@ import {Link} from 'react-router';
 import PropTypes from 'prop-types'
 import EditTabClientComponent from './EditTabClientComponent';
 import {bindActionCreators} from 'redux';
-import * as clientActions from '../clientActions';
+import * as clientActions from '../../clientActions';
 
 class EditTabClientContainer extends React.Component {
     constructor(props, context) {
         super(props, context);
-        // this.changeCheckTab = this.changeCheckTab.bind(this);
-        // this.updateFormData = this.updateFormData.bind(this);
+        this.changeCheckTab = this.changeCheckTab.bind(this);
+        this.editTabClient = this.editTabClient.bind(this);
     }
 
     componentWillMount() {
         this.props.clientActions.loadClientTabData(this.props.params.clientId);
     }
 
-    componentDidUpdate() {
-        // $('#form-edit-role').validate({
-        //     errorPlacement: function (error, element) {
-        //         $(element).parent('div').addClass('has-error');
-        //     }
-        // });
+    changeCheckTab(tab) {
+        this.props.clientActions.changeCheckTabClient(tab);
     }
 
-    // updateFormData(event) {
-    //     const field = event.target.name;
-    //     let roleForm = {...this.props.roleForm};
-    //     roleForm[field] = event.target.value;
-    //     this.props.roleActions.updateRoleFormData(roleForm);
-    // }
-    // changeCheckTab(tab){
-    //     this.props.tabsActions.changeCheckTab(tab);
-    // }
-    //
-    // editRole(){
-    //     this.props.roleActions.editRoleData(this.props.tabsListData, this.props.roleForm);
-    // }
+    editTabClient() {
+        this.props.clientActions.editTabClientData(this.props.tabListData, this.props.params.clientId);
+    }
 
 
     render() {
@@ -77,8 +63,11 @@ class EditTabClientContainer extends React.Component {
                         <div className="card-content">
                             <div className="tab-content">
                                 <EditTabClientComponent
-                                    isLoadingTab = {this.props.isLoadingTab}
-                                    tabListData = {this.props.tabListData}
+                                    isLoadingTab={this.props.isLoadingTab}
+                                    isLoadingUpdateTab={this.props.isLoadingUpdateTab}
+                                    tabListData={this.props.tabListData}
+                                    changeCheckTab={this.changeCheckTab}
+                                    editTabClient={this.editTabClient}
                                 />
                             </div>
                         </div>
@@ -91,13 +80,17 @@ class EditTabClientContainer extends React.Component {
 
 EditTabClientContainer.propTypes = {
     params: PropTypes.object.isRequired,
+    isLoadingTab: PropTypes.bool.isRequired,
+    isLoadingUpdateTab: PropTypes.bool.isRequired,
+    errorLoadingTab: PropTypes.bool.isRequired,
+    tabListData: PropTypes.array.isRequired,
 };
 
 function mapStateToProps(state) {
     return {
-        isLoadingTab: state.client.editTab.isLoadingTab,
-        errorLoadingTab: state.client.editTab.errorTab,
-        clientFormTab: state.client.clientFormTab,
+        isLoadingTab: state.client.isLoadingTab,
+        errorLoadingTab: state.client.errorLoadingTab,
+        isLoadingUpdateTab: state.client.isLoadingUpdateTab,
         tabListData: state.client.tabListData,
     };
 }

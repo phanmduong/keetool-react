@@ -31,7 +31,7 @@ export function pingClientSuccess(data) {
 }
 
 
-export function beginEditRoleData() {
+export function beginEditTabClientData() {
     helper.showNotification("Đang sửa tính năng");
     return {
         type: types.BEGIN_EDIT_CLIENT_TAB_DATA,
@@ -40,21 +40,33 @@ export function beginEditRoleData() {
     };
 }
 
-export function editRoleData(tabs, clientTab) {
+export function editTabClientData(tabs, clientId) {
     return function (dispatch) {
-        dispatch(beginEditRoleData());
-        clientApi.editRole(tabs, clientTab)
-            .then(function (res) {
-                dispatch(editRoleDataSucessful(res));
+        dispatch(beginEditTabClientData());
+        clientApi.editClientTab(tabs, clientId)
+            .then(function () {
+                dispatch(beginSetClientTab(clientId));
             }).catch((error) => {
-            dispatch(editRoleDataError(error.response.data.error));
-            console.log(error);
+            dispatch(editTabClientDataError(error.response.data.error));
         });
     };
 }
 
-export function editRoleDataSucessful() {
+export function beginSetClientTab(clientId) {
     helper.showNotification("Sửa tính năng thành công");
+    helper.showNotification("Đang thay đổi tính năng client");
+    return function (dispatch) {
+        console.log("push server");
+        clientApi.setClientTab(clientId)
+            .then(function () {
+                dispatch(editTabClientDataSucessful());
+            }).catch(function () {
+            dispatch(editTabClientDataError());
+        });
+    };
+}
+
+export function editTabClientDataSucessful() {
     return (
         {
             type: types.EDIT_CLIENT_TAB_DATA_SUCCESSFUL,
@@ -63,11 +75,8 @@ export function editRoleDataSucessful() {
         });
 }
 
-export function editRoleDataError() {
-
-
+export function editTabClientDataError() {
     helper.showNotification("Sửa tính năng thất bại. Thử lại");
-
     return ({
         type: types.EDIT_CLIENT_TAB_DATA_ERROR,
         isLoading: false,
@@ -103,7 +112,6 @@ export function loadClientTabDataSucessful(res) {
         {
             type: types.LOAD_CLIENT_TAB_DATA_SUCCESSFUL,
             tabListData: res.data.data.tabs,
-            client: res.data.data.client,
             isLoading: false,
             error: false
         })
@@ -120,5 +128,12 @@ export function loadClientTabDataError() {
         ;
 }
 
+export function changeCheckTabClient(tab) {
+    return ({
+            type: types.CHANGE_CHECK_TAB_CLIENT,
+            tab: tab
+        }
+    );
+}
 
 

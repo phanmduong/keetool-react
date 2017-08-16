@@ -1,7 +1,7 @@
 import React from 'react';
 import FormInputText from '../common/FormInputText';
 import Loading from "../common/Loading";
-import ItemTabParent from './ItemTabParent';
+import ItemTabParent from '../common/ItemTabParent';
 import PropTypes from 'prop-types';
 
 let self;

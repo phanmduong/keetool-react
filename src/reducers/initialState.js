@@ -148,13 +148,10 @@ export default {
     },
 
     client: {
-        editTab: {
-            isLoadingTab: false,
-            errorTab: false,
-            isLoadingUpdateRole: false,
-            errorUpdateRole: false,
-        },
-        clientFormTab: {},
+        isLoadingTab: false,
+        errorLoadingTab: false,
+        isLoadingUpdateTab: false,
+        errorUpdateTab: false,
         tabListData: []
     },
 
