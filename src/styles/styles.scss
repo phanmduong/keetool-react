@@ -82,3 +82,10 @@ table tr td .avatar-list-staff{
     align-content: center;
   }
 }
+
+@media screen and (min-width: 760px) {
+  .td-long-wrap {
+    max-width: 120px;
+    word-break: break-all;
+  }
+}

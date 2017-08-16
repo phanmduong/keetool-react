@@ -10,6 +10,7 @@ import {bindActionCreators} from "redux";
 import ListClientConfigs from '../../config/ListClientConfigs';
 import Loading from "../../../components/common/Loading";
 import _ from 'lodash';
+import Search from "../../../components/common/Search";
 
 class EditConfigClientContainer extends React.Component {
     constructor(props, context) {
@@ -20,10 +21,24 @@ class EditConfigClientContainer extends React.Component {
             query: ""
         };
         this.timeOut = null;
+        this.clientConfigSearchChange = this.clientConfigSearchChange.bind(this);
     }
 
     componentWillMount() {
         this.loadClientConfigs();
+    }
+
+    clientConfigSearchChange(value) {
+        this.setState({
+            page: 1,
+            query: value
+        });
+        if (this.timeOut !== null) {
+            clearTimeout(this.timeOut);
+        }
+        this.timeOut = setTimeout(function () {
+            this.props.configActions.loadClientConfigs(this.props.params.clientId, this.state.page, value);
+        }.bind(this), 500);
     }
 
     loadClientConfigs(page = 1) {
@@ -64,6 +79,11 @@ class EditConfigClientContainer extends React.Component {
                             </div>
                         </div>
                         <div className="card-content">
+                            <Search
+                                onChange={this.clientConfigSearchChange}
+                                value={this.state.query}
+                                placeholder="Tìm kiếm config (tên, mô tả)"
+                            />
                             <div className="tab-content">
                                 {
                                     this.props.isLoadingClientConfigs ?

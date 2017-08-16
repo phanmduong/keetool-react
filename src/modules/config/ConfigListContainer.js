@@ -9,6 +9,7 @@ import {Link} from "react-router";
 import Loading from "../../components/common/Loading";
 import _ from 'lodash';
 import {confirm} from '../../helpers/helper';
+import Search from "../../components/common/Search";
 
 class ConfigListContainer extends React.Component {
     constructor(props, context) {
@@ -20,6 +21,7 @@ class ConfigListContainer extends React.Component {
         };
         this.timeOut = null;
         this.loadConfigs = this.loadConfigs.bind(this);
+        this.configSearchChange = this.configSearchChange.bind(this);
     }
 
     componentWillMount() {
@@ -38,6 +40,19 @@ class ConfigListContainer extends React.Component {
             page
         });
         this.props.configActions.loadConfigs(page, this.state.query);
+    }
+
+    configSearchChange(value) {
+        this.setState({
+            page: 1,
+            query: value
+        });
+        if (this.timeOut !== null) {
+            clearTimeout(this.timeOut);
+        }
+        this.timeOut = setTimeout(function () {
+            this.props.configActions.loadConfigs(this.state.page, this.state.query);
+        }.bind(this), 500);
     }
 
     render() {
@@ -61,11 +76,11 @@ class ConfigListContainer extends React.Component {
                                 </Link>
                             </div>
 
-                            {/*<Search*/}
-                            {/*onChange={this.basesSearchChange}*/}
-                            {/*value={this.state.query}*/}
-                            {/*placeholder="Tìm kiếm cơ sở (tên, địa chỉ)"*/}
-                            {/*/>*/}
+                            <Search
+                                onChange={this.configSearchChange}
+                                value={this.state.query}
+                                placeholder="Tìm kiếm config (tên, mô tả)"
+                            />
 
                             {this.props.isLoadingConfigs ? <Loading/> :
                                 <ListConfigs

@@ -6,6 +6,16 @@ import initialState from '../../reducers/initialState';
 
 export default function configReducer(state = initialState.config, action) {
     switch (action.type) {
+        case types.DELETE_CLIENT_CONFIG_SUCCESS:
+            return {
+                ...state,
+                clientConfigList: {
+                    ...state.clientConfigList,
+                    clientConfigs: state.clientConfigList.clientConfigs.filter(c => {
+                        return c.id !== action.clientConfig.id;
+                    }),
+                }
+            };
         case types.LOAD_CLIENT_CONFIGS_SUCCESS:
             return {
                 ...state,

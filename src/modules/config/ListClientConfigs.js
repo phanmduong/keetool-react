@@ -29,8 +29,14 @@ class ListConfigs extends React.Component {
                         return (
                             <tr key={config.id}>
                                 <td>{config.name}</td>
-                                <td>{config.value}</td>
-                                <td>{config.description}</td>
+                                <td>
+                                    <div className="td-long-wrap">
+                                        {config.value}
+                                    </div>
+                                </td>
+                                <td>
+                                    {config.description}
+                                </td>
                                 <td>{config.type}</td>
                                 <td>{config.is_required ? "Bắt buộc" : "Không bắt buộc"}</td>
                                 <td>{config.created_at}</td>

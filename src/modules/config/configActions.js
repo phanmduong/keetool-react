@@ -8,13 +8,13 @@ import {showNotification} from "../../helpers/helper";
 
 // import _ from 'lodash';
 
-export function loadClientConfigs(page = 1, query = null) {
+export function loadClientConfigs(clientId, page = 1, query = null) {
     return function (dispatch) {
         dispatch({
             type: types.BEGIN_LOAD_CLIENT_CONFIGS
         });
 
-        configApi.loadClientConfigs(page, query).then(function (res) {
+        configApi.loadClientConfigs(clientId, page, query).then(function (res) {
             dispatch({
                 type: types.LOAD_CLIENT_CONFIGS_SUCCESS,
                 clientConfigs: res.data.client_configs,
@@ -117,13 +117,13 @@ export function updateCreateConfigFormData(config) {
 export function deleteClientConfig(clientConfig) {
     return function (dispatch) {
         dispatch({
-            type: types.DELETE_CONFIG_SUCCESS,
+            type: types.DELETE_CLIENT_CONFIG_SUCCESS,
             clientConfig
         });
         showNotification("Xoá thành công");
-        // configApi.deleteConfig(config).catch(error => {
-        //     console.log(error);
-        // });
+        configApi.deleteClientConfig(clientConfig).catch(error => {
+            console.log(error);
+        });
 
     };
 }
