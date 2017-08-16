@@ -21,6 +21,7 @@ class ListConfigs extends React.Component {
                         <th>Bắt buộc</th>
                         <th>Thêm vào lúc</th>
                         <th>Sửa gần nhất</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -30,7 +31,7 @@ class ListConfigs extends React.Component {
                                 <td>{config.name}</td>
                                 <td>{config.description}</td>
                                 <td>{config.type}</td>
-                                <td>{config.isRequired}</td>
+                                <td>{config.is_required ? "Bắt buộc" : "Không bắt buộc"}</td>
                                 <td>{config.created_at}</td>
                                 <td>{config.updated_at}</td>
 

@@ -177,6 +177,11 @@ export default {
             isLoadingConfigs: false,
             currentPage: 1,
             totalPages: 1
+        },
+        createConfig: {
+            config: {},
+            isLoadingConfig: false,
+            isSavingConfig: false
         }
     }
 

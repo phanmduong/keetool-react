@@ -8,6 +8,7 @@ import ListConfigs from "./ListConfigs";
 import {Link} from "react-router";
 import Loading from "../../components/common/Loading";
 import _ from 'lodash';
+import {confirm} from '../../helpers/helper';
 
 class ConfigListContainer extends React.Component {
     constructor(props, context) {
@@ -25,8 +26,11 @@ class ConfigListContainer extends React.Component {
         this.loadConfigs();
     }
 
-    deleteConfig() {
-
+    deleteConfig(config) {
+        confirm("error", "Xoá", "Bạn có chắc chắn muốn xoá?",
+            function () {
+                this.props.configActions.deleteConfig(config);
+            }.bind(this));
     }
 
     loadConfigs(page = 1) {
@@ -52,7 +56,7 @@ class ConfigListContainer extends React.Component {
                             <h4 className="card-title">Configs</h4>
 
                             <div style={{marginTop: "15px"}}>
-                                <Link to="/base/create" className="btn btn-rose">
+                                <Link to="/config/create" className="btn btn-rose">
                                     Thêm config
                                 </Link>
                             </div>
