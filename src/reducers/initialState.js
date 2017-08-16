@@ -182,6 +182,12 @@ export default {
             config: {},
             isLoadingConfig: false,
             isSavingConfig: false
+        },
+        clientConfigList: {
+            clientConfigs: [],
+            isLoadingClientConfigs: false,
+            totalPages: 1,
+            currentPage: 1
         }
     }
 
