@@ -52,7 +52,7 @@ class ConfigListContainer extends React.Component {
                             <h4 className="card-title">Configs</h4>
 
                             <div style={{marginTop: "15px"}}>
-                                <Link to="/base/create" className="btn btn-rose">
+                                <Link to="/config/create" className="btn btn-rose">
                                     Thêm config
                                 </Link>
                             </div>

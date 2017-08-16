@@ -7,15 +7,19 @@ class Select extends React.Component {
     }
 
     componentDidMount() {
-        $('.selectpicker').selectpicker();
+        if ($('.selectpicker').selectpicker) {
+            $('.selectpicker').selectpicker();
+        }
+
 
     }
 
     render() {
         return (
             <select
+                name={this.props.name}
                 value={this.props.value}
-                onChange={(event) => this.props.onChange(event.target.value)}
+                onChange={this.props.onChange}
                 className="selectpicker"
                 data-style="btn btn-primary btn-round" data-size="7">
                 <option disabled>{this.props.defaultMessage || "Please select"}</option>
@@ -31,6 +35,7 @@ class Select extends React.Component {
 
 Select.propTypes = {
     value: PropTypes.string.isRequired,
+    name: PropTypes.string,
     options: PropTypes.array.isRequired,
     onChange: PropTypes.func.isRequired,
     defaultMessage: PropTypes.string,

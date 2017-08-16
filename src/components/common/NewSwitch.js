@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 class Switch extends React.Component {
     constructor(props, context) {
         super(props, context);
-        this.handleInputChange = this.handleInputChange.bind(this);
     }
 
 
@@ -12,11 +11,6 @@ class Switch extends React.Component {
         if ($.material) {
             $.material.init();
         }
-    }
-
-    handleInputChange(event) {
-        const value = event.target.checked;
-        this.props.onChange(value);
     }
 
     render() {
@@ -27,7 +21,7 @@ class Switch extends React.Component {
                         name={this.props.name}
                         type="checkbox"
                         checked={this.props.value}
-                        onChange={this.handleInputChange}/>
+                        onChange={this.props.onChange}/>
                     {this.props.value ? this.props.onText : this.props.offText}
                 </label>
             </div>
@@ -38,7 +32,10 @@ class Switch extends React.Component {
 Switch.propTypes = {
     name: PropTypes.string,
     onChange: PropTypes.func.isRequired,
-    value: PropTypes.bool.isRequired
+    value: PropTypes.oneOfType([
+        PropTypes.number.isRequired,
+        PropTypes.bool.isRequired
+    ])
 };
 
 export default Switch;

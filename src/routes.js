@@ -23,6 +23,7 @@ import CreateProjectContainer from "./modules/tasks/CreateProjectContainer";
 import BoardListContainer from "./modules/tasks/BoardListContainer";
 import CreateClientContainer from "./modules/manageClient/client/CreateClientContainer";
 import ConfigListContainer from "./modules/config/ConfigListContainer";
+import CreateConfigContainer from "./modules/config/CreateConfigContainer";
 
 
 export default (
@@ -65,6 +66,8 @@ export default (
 
             {/*Begin config routes*/}
             <Route path="/config/list" component={ConfigListContainer}/>
+            <Route path="/config/create" component={CreateConfigContainer} type="create"/>
+            <Route path="/config/:configId/edit" component={CreateConfigContainer} type="edit"/>
             {/*End config routes*/}
         </Route>
         <Route path="login" component={LoginContainer}/>

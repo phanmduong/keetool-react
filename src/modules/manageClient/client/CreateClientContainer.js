@@ -24,7 +24,9 @@ class CreateClientContainer extends React.Component {
     }
 
     submit() {
-        this.props.clientListActions.createClient(this.props.client);
+        if ($("#client-form").valid()) {
+            this.props.clientListActions.createClient(this.props.client);
+        }
     }
 
     updateFormData(event) {
