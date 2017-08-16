@@ -7,6 +7,7 @@ import * as configActions from './configActions';
 import ListConfigs from "./ListConfigs";
 import {Link} from "react-router";
 import Loading from "../../components/common/Loading";
+import _ from 'lodash';
 
 class ConfigListContainer extends React.Component {
     constructor(props, context) {
