@@ -14,6 +14,7 @@ export function pingClient(id) {
         clientApi.pingClient(id).then(function (res) {
             dispatch(pingClientSuccess(res.data));
         }).catch(error => {
+            helper.showNotification("Kết nối thất bại");
             console.log(error);
         });
 
@@ -21,13 +22,50 @@ export function pingClient(id) {
 }
 
 export function pingClientSuccess(data) {
-    if (data.status && data.status === 1){
+    if (data.status && data.status === 1) {
         helper.showNotification("Kết nối thành công");
+    } else {
+        helper.showNotification("Kết nối thất bại");
     }
     return ({
         type: types.PING_CLIENT_SUCCESS,
         status: data.status,
     })
+}
+
+export function updateClient(id) {
+    helper.showNotification("Đang cập nhật")
+    return function (dispatch) {
+        dispatch({
+            type: types.BEGIN_UPDATE_CLIENT,
+        });
+        clientApi.updateClient(id).then(function (res) {
+            dispatch(updateClientSuccess(res.data));
+        }).catch(error => {
+            console.log(error);
+            helper.alertStatus("Cập nhật thất bại", "Thử lại", "error");
+        });
+
+    };
+}
+
+export function updateClientSuccess(data) {
+    var output = "";
+    data.output.forEach(function (line) {
+        console.log(line);
+        if (line.trim().length > 0) {
+            output += line + '\n';
+        }
+    });
+    if (data.status && data.status === 1) {
+        helper.alertStatus("Cập nhật thành công", output);
+    } else {
+        helper.alertStatus("Cập nhật thất bại", output, "error");
+    }
+    return ({
+        type: types.UPDATE_CLIENT_SUCCESS,
+        status: data.status,
+    });
 }
 
 

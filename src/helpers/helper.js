@@ -32,6 +32,16 @@ export function confirm(type, title, html, success, cancel) {
     });
 }
 
+export function alertStatus(title, message, status = "success") {
+    swal({
+        title: title,
+        text: message,
+        type: status,
+        buttonsStyling: false,
+        confirmButtonClass: "btn btn-success"
+    })
+}
+
 export function showNotification(message, from = "top", align = "right", type = "success") {
     // type = ['', 'info', 'success', 'warning', 'danger', 'rose', 'primary'];
 
@@ -60,7 +70,7 @@ export function decodeToken(token) {
         jwt.verify(token, env.SECRET_TOKEN, function (err, decoded) {
 
 
-                resolve(err, decoded);
+            resolve(err, decoded);
 
 
         });
