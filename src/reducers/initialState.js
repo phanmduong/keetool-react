@@ -155,6 +155,12 @@ export default {
         tabListData: []
     },
 
+    clientConfig:{
+        isLoadingClientConfig: false,
+        isSavingClientConfig: false,
+        clientConfig:{}
+    },
+
 
     task: {
         createProject: {

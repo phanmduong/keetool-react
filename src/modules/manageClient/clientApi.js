@@ -79,6 +79,14 @@ export function setClientTab(clientId) {
         url += "?token=" + token;
     }
     return axios.get(url);
+}
 
+export function updateClient(clientId) {
+    let url = env.MANAGE_API_URL + "/update/" + clientId;
+    let token = localStorage.getItem('token');
+    if (token) {
+        url += "?token=" + token;
+    }
+    return axios.get(url);
 }
 

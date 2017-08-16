@@ -35,6 +35,7 @@ class ListClient extends React.Component {
                                         editUrl={"client/" + client.id + "/info/edit"}
                                         delete={this.props.deleteClient}
                                         pingClient={this.props.pingClient}
+                                        updateClient={this.props.updateClient}
                                         object={client.id}
                                     />
                                 </td>
@@ -51,6 +52,7 @@ class ListClient extends React.Component {
 ListClient.propTypes = {
     deleteClient: PropTypes.func.isRequired,
     pingClient: PropTypes.func.isRequired,
+    updateClient: PropTypes.func.isRequired,
     clients: PropTypes.array.isRequired
 };
 

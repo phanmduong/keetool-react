@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from "react-router";
 
-class ButtonGroupAction extends React.Component {
+class ButtonGroupActionClient extends React.Component {
     constructor(props, context) {
         super(props, context);
     }
@@ -29,19 +29,25 @@ class ButtonGroupAction extends React.Component {
                    rel="tooltip">
                     <i className="material-icons">cast_connected</i>
                 </a>
+                <a data-toggle="tooltip" title="Update"
+                   onClick={() => this.props.updateClient(this.props.object)} type="button"
+                   rel="tooltip">
+                    <i className="material-icons">cloud_upload</i>
+                </a>
             </div>
         );
     }
 }
 
-ButtonGroupAction.propTypes = {
+ButtonGroupActionClient.propTypes = {
     editUrl: PropTypes.string.isRequired,
     delete: PropTypes.func.isRequired,
     pingClient: PropTypes.func.isRequired,
+    updateClient: PropTypes.func.isRequired,
     object: PropTypes.oneOfType([
         PropTypes.object,
         PropTypes.number,
     ])
 };
 
-export default ButtonGroupAction;
+export default ButtonGroupActionClient;

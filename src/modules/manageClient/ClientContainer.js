@@ -21,6 +21,7 @@ class ClientContainer extends React.Component {
         this.deleteClient = this.deleteClient.bind(this);
         this.loadClients = this.loadClients.bind(this);
         this.pingClient = this.pingClient.bind(this);
+        this.updateClient = this.updateClient.bind(this);
         this.state = {
             page: 1,
             query: ""
@@ -63,6 +64,11 @@ class ClientContainer extends React.Component {
         this.props.clientActions.pingClient(id);
     }
 
+    updateClient(id){
+        this.props.clientActions.updateClient(id);
+    }
+
+
 
     render() {
         const currentPage = this.state.page;
@@ -96,6 +102,7 @@ class ClientContainer extends React.Component {
                                 <ListClient
                                     pingClient={this.pingClient}
                                     deleteClient={this.deleteClient}
+                                    updateClient={this.updateClient}
                                     handleSwitch={this.handleSwitch}
                                     clients={this.props.clients}/>}
                         </div>

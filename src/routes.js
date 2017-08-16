@@ -24,6 +24,7 @@ import BoardListContainer from "./modules/tasks/BoardListContainer";
 import CreateClientContainer from "./modules/manageClient/client/CreateClientContainer";
 import ConfigListContainer from "./modules/config/ConfigListContainer";
 import CreateConfigContainer from "./modules/config/CreateConfigContainer";
+import CreateClientConfigContainer from "./modules/manageClient/clientConfig/CreateClientConfigContainer";
 
 
 export default (
@@ -69,6 +70,11 @@ export default (
             <Route path="/config/create" component={CreateConfigContainer} type="create"/>
             <Route path="/config/:configId/edit" component={CreateConfigContainer} type="edit"/>
             {/*End config routes*/}
+
+            {/*Begin client config routes*/}
+            <Route path="/client-config/:clientId/create" component={CreateClientConfigContainer} type="create"/>
+            <Route path="/client-config/:clientId/:clientConfigId/edit" component={CreateClientConfigContainer} type="edit"/>
+            {/*End client config routes*/}
         </Route>
         <Route path="login" component={LoginContainer}/>
         <Route path="*" component={NotFoundPage}/>

@@ -11,6 +11,7 @@ import baseReducer from './baseReducer';
 import baseListReducer from '../modules/bases/baseListReducer';
 import clientListReducer from '../modules/manageClient/clientListReducer';
 import clientReducer from '../modules/manageClient/clientReducer';
+import clientConfigReducer from '../modules/manageClient/clientConfig/clientConfigReducer';
 import configReducer from '../modules/config/configReducer';
 import * as types from '../constants/actionTypes';
 import taskReducer from "../modules/tasks/taskReducer";
@@ -29,7 +30,8 @@ const appReducer = combineReducers({
     clientList: clientListReducer,
     client: clientReducer,
     config: configReducer,
-    task: taskReducer
+    task: taskReducer,
+    clientConfig: clientConfigReducer
 });
 
 const rootReducer = (state, action) => {
