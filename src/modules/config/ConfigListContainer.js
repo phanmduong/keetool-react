@@ -18,14 +18,22 @@ class ConfigListContainer extends React.Component {
             query: ""
         };
         this.timeOut = null;
+        this.loadConfigs = this.loadConfigs.bind(this);
     }
 
     componentWillMount() {
-
+        this.loadConfigs();
     }
 
     deleteConfig() {
 
+    }
+
+    loadConfigs(page = 1) {
+        this.setState({
+            page
+        });
+        this.props.configActions.loadConfigs(page, this.state.query);
     }
 
     render() {
@@ -68,13 +76,13 @@ class ConfigListContainer extends React.Component {
                                 if (Number(this.state.page) === page) {
                                     return (
                                         <li key={page} className="active">
-                                            <a onClick={() => this.loadBases(page)}>{page}</a>
+                                            <a onClick={() => this.loadConfigs(page)}>{page}</a>
                                         </li>
                                     );
                                 } else {
                                     return (
                                         <li key={page}>
-                                            <a onClick={() => this.loadBases(page)}>{page}</a>
+                                            <a onClick={() => this.loadConfigs(page)}>{page}</a>
                                         </li>
                                     );
                                 }
