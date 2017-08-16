@@ -72,7 +72,7 @@ export function resetConfig() {
 export function deleteConfig(config) {
     return function (dispatch) {
         dispatch({
-            type: types.DELETE_BASE_SUCCESS,
+            type: types.DELETE_CONFIG_SUCCESS,
             config
         });
         showNotification("Xoá thành công");
