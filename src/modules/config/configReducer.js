@@ -2,7 +2,7 @@
  * Created by phanmduong on 4/6/17.
  */
 import * as types from '../../constants/actionTypes';
-import initialState from '../../reducers/initialState';åå
+import initialState from '../../reducers/initialState';
 
 var configs; // eslint-disable-line
 export default function configReducer(state = initialState.config, action) {
