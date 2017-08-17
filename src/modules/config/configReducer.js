@@ -129,7 +129,7 @@ export default function configReducer(state = initialState.config, action) {
                 configsRequired: {
                     ...state.configList,
                     isLoadingConfigsRequired: false,
-                    configs: action.configsRequired
+                    configs: configs
                 }
             };
         default:
@@ -137,6 +137,17 @@ export default function configReducer(state = initialState.config, action) {
     }
 }
 
-function changeConfigsRequired() {
-    
+function changeConfigsRequired(configs, configData) {
+    if (configs){
+        return configs.map((config)=>{
+            if (config.id === configData.id){
+                return {
+                    ...config,
+                    ...configData
+                };
+            }
+            return config;
+        })
+    }
+    return configs;
 }
