@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FormInputText from "../../components/common/FormInputText";
 
-const ClientForm = ({updateFormData, client, submit, isSavingClient}) => {
+const ClientForm = ({updateFormData, client, submit, isSavingClient, configsRequired, updateFormConfigsRequired}) => {
 
-    const {companyName, address, taxNumber, programName} = client;
+    const {companyName, address, taxNumber, programName, ip} = client;
 
     return (
         <form onSubmit={(event) => {
@@ -39,6 +39,28 @@ const ClientForm = ({updateFormData, client, submit, isSavingClient}) => {
                 required={true}
                 updateFormData={updateFormData}
                 value={programName}/>
+            <FormInputText
+                placeholder="Nhập địa chỉ IP"
+                label="Địa chỉ IP"
+                name="ip"
+                required={true}
+                updateFormData={updateFormData}
+                value={ip}/>
+            {
+                configsRequired.map((config)=>{
+                    return (
+                        <FormInputText
+                            key={config.id}
+                            label={config.name + " - " + config.type}
+                            name="ip"
+                            required={true}
+                            updateFormData={updateFormConfigsRequired}
+                            value={config.value}
+                            data={config}
+                        />
+                    );
+                })
+            }
             <div>
                 {isSavingClient ?
                     (
@@ -66,7 +88,9 @@ ClientForm.propTypes = {
     client: PropTypes.object,
     submit: PropTypes.func.isRequired,
     isSavingClient: PropTypes.bool.isRequired,
-    updateFormData: PropTypes.func.isRequired
+    updateFormData: PropTypes.func.isRequired,
+    updateFormConfigsRequired: PropTypes.func.isRequired,
+    configsRequired: PropTypes.array.isRequired
 };
 
 export default ClientForm;

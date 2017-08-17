@@ -5,7 +5,7 @@ import axios from 'axios';
 import * as env from '../../constants/env';
 
 export function createClient(client) {
-    const {companyName, address, taxNumber, programName} = client;
+    const {companyName, address, taxNumber, programName, ip} = client;
     let url = env.MANAGE_API_URL + "/client/create";
     const token = localStorage.getItem('token');
     if (token) {
@@ -15,7 +15,8 @@ export function createClient(client) {
         company_name: companyName,
         address,
         tax_number: taxNumber,
-        program_name: programName
+        program_name: programName,
+        ip: ip
     });
 }
 
@@ -79,6 +80,14 @@ export function setClientTab(clientId) {
         url += "?token=" + token;
     }
     return axios.get(url);
+}
 
+export function updateClient(clientId) {
+    let url = env.MANAGE_API_URL + "/update/" + clientId;
+    let token = localStorage.getItem('token');
+    if (token) {
+        url += "?token=" + token;
+    }
+    return axios.get(url);
 }
 

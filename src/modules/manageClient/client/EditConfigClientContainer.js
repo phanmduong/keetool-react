@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router';
+import {Link, browserHistory} from 'react-router';
 import PropTypes from 'prop-types';
 import * as configActions from '../../config/configActions';
 import {bindActionCreators} from "redux";
@@ -79,17 +79,34 @@ class EditConfigClientContainer extends React.Component {
                             </div>
                         </div>
                         <div className="card-content">
-                            <Search
-                                onChange={this.clientConfigSearchChange}
-                                value={this.state.query}
-                                placeholder="Tìm kiếm config (tên, mô tả)"
-                            />
                             <div className="tab-content">
+                                <div className="row">
+                                    <div className="col-md-12">
+                                        <div className="col-md-3">
+                                            <button
+                                                type="button"
+                                                className="btn btn-rose"
+                                                onClick={() =>
+                                                    browserHistory.push('/client-config/' + this.props.params.clientId + '/create')
+                                                }
+                                            >
+                                                Thêm cài đặt
+                                            </button>
+                                        </div>
+                                        <Search
+                                            onChange={this.clientConfigSearchChange}
+                                            value={this.state.query}
+                                            placeholder="Tìm kiếm config (tên, mô tả)"
+                                            className="col-md-9"
+                                        />
+                                    </div>
+                                </div>
                                 {
                                     this.props.isLoadingClientConfigs ?
                                         <Loading/>
                                         : (
                                             <ListClientConfigs
+                                                clientId={this.props.params.clientId}
                                                 clientConfigs={this.props.clientConfigs}
                                                 deleteClientConfig={this.props.configActions.deleteClientConfig}/>
                                         )

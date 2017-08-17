@@ -4,6 +4,7 @@
 import * as types from '../../constants/actionTypes';
 import initialState from '../../reducers/initialState';
 
+var configs;
 export default function configReducer(state = initialState.config, action) {
     switch (action.type) {
         case types.DELETE_CLIENT_CONFIG_SUCCESS:
@@ -104,8 +105,38 @@ export default function configReducer(state = initialState.config, action) {
                     totalPages: action.totalPages
                 }
             };
+        case types.BEGIN_LOAD_CONFIGS_REQUIRED:
+            return {
+                ...state,
+                configsRequired: {
+                    ...state.configList,
+                    isLoadingConfigsRequired: true
+                }
+            };
+        case types.LOAD_CONFIGS_REQUIRED_SUCCESS:
+            return {
+                ...state,
+                configsRequired: {
+                    ...state.configList,
+                    isLoadingConfigsRequired: false,
+                    configs: action.configsRequired
+                }
+            };
+        case types.UPDATE_CONFIGS_REQUIRED_FORM:
+            configs = changeConfigsRequired(state.configsRequired.configs, action.config);
+            return {
+                ...state,
+                configsRequired: {
+                    ...state.configList,
+                    isLoadingConfigsRequired: false,
+                    configs: action.configsRequired
+                }
+            };
         default:
             return state;
     }
+}
 
+function changeConfigsRequired() {
+    
 }

@@ -48,6 +48,26 @@ export function loadConfigs(page = 1, query = null) {
     };
 }
 
+export function loadConfigAll() {
+    return function (dispatch) {
+        dispatch({
+            type: types.BEGIN_LOAD_CONFIGS
+        });
+
+        configApi.loadConfigAll().then(function (res) {
+            dispatch({
+                type: types.LOAD_CONFIGS_SUCCESS,
+                configs: res.data.data.configs,
+                currentPage: 1,
+                totalPages: 1,
+            });
+        }).catch(error => {
+            console.error(error);
+        });
+
+    };
+}
+
 export function createConfig(config) {
     return function (dispatch) {
         dispatch({
@@ -123,6 +143,24 @@ export function deleteClientConfig(clientConfig) {
         showNotification("Xoá thành công");
         configApi.deleteClientConfig(clientConfig).catch(error => {
             console.log(error);
+        });
+
+    };
+}
+
+export function getConfigsRequired() {
+    return function (dispatch) {
+        dispatch({
+            type: types.BEGIN_LOAD_CONFIGS_REQUIRED
+        });
+
+        configApi.loadConfigsRequired().then(function (res) {
+            dispatch({
+                type: types.LOAD_CONFIGS_REQUIRED_SUCCESS,
+                configsRequired: res.data.data,
+            });
+        }).catch(error => {
+            console.error(error);
         });
 
     };

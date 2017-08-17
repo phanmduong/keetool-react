@@ -19,6 +19,7 @@ class ListClient extends React.Component {
                         <th>Địa chỉ</th>
                         <th>Tên chương trình</th>
                         <th>Mã số thuế</th>
+                        <th>Địa chỉ IP</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -30,11 +31,13 @@ class ListClient extends React.Component {
                                 <td>{client.address}</td>
                                 <td>{client.program_name}</td>
                                 <td>{client.tax_number}</td>
+                                <td>{client.ip}</td>
                                 <td>
                                     <ButtonGroupActionClient
                                         editUrl={"client/" + client.id + "/info/edit"}
                                         delete={this.props.deleteClient}
                                         pingClient={this.props.pingClient}
+                                        updateClient={this.props.updateClient}
                                         object={client.id}
                                     />
                                 </td>
@@ -51,6 +54,7 @@ class ListClient extends React.Component {
 ListClient.propTypes = {
     deleteClient: PropTypes.func.isRequired,
     pingClient: PropTypes.func.isRequired,
+    updateClient: PropTypes.func.isRequired,
     clients: PropTypes.array.isRequired
 };
 

@@ -43,7 +43,7 @@ class ListConfigs extends React.Component {
                                 <td>{config.updated_at}</td>
                                 <td>
                                     <ButtonGroupAction
-                                        editUrl={"client-config/" + config.id + "/edit"}
+                                        editUrl={"client-config/" + this.props.clientId + '/' + config.id + "/edit"}
                                         delete={this.props.deleteClientConfig}
                                         object={config}
                                     />
@@ -60,7 +60,8 @@ class ListConfigs extends React.Component {
 
 ListConfigs.propTypes = {
     deleteClientConfig: PropTypes.func.isRequired,
-    clientConfigs: PropTypes.array.isRequired
+    clientConfigs: PropTypes.array.isRequired,
+    clientId: PropTypes.number.isRequired
 };
 
 export default ListConfigs;

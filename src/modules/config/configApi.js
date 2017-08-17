@@ -28,6 +28,15 @@ export function loadConfigs(page = 1, query = null) {
     return axios.get(url);
 }
 
+export function loadConfigAll() {
+    let url = env.MANAGE_API_URL + "/config-all";
+    let token = localStorage.getItem('token');
+    if (token) {
+        url += "?token=" + token;
+    }
+    return axios.get(url);
+}
+
 
 export function deleteConfig(config) {
     let url = env.MANAGE_API_URL + "/config/delete/" + config.id;
@@ -65,4 +74,14 @@ export function createConfig(config) {
     }
     return axios.post(url, config);
 }
+
+export function loadConfigsRequired() {
+    let url = env.MANAGE_API_URL + "/configs-required";
+    let token = localStorage.getItem('token');
+    if (token) {
+        url += "?token=" + token;
+    }
+    return axios.get(url);
+}
+
 
