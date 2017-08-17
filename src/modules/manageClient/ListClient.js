@@ -19,6 +19,7 @@ class ListClient extends React.Component {
                         <th>Địa chỉ</th>
                         <th>Tên chương trình</th>
                         <th>Mã số thuế</th>
+                        <th>Địa chỉ IP</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -30,6 +31,7 @@ class ListClient extends React.Component {
                                 <td>{client.address}</td>
                                 <td>{client.program_name}</td>
                                 <td>{client.tax_number}</td>
+                                <td>{client.ip}</td>
                                 <td>
                                     <ButtonGroupActionClient
                                         editUrl={"client/" + client.id + "/info/edit"}

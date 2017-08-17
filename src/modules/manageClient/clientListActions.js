@@ -52,4 +52,13 @@ export function createClient(client) {
     };
 }
 
+export function updateConfigsRequiredForm(config) {
+    return function (dispatch) {
+        dispatch({
+           type: types.UPDATE_CONFIGS_REQUIRED_FORM,
+            config
+        });
+    };
+}
+
 

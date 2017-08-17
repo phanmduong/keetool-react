@@ -6,6 +6,7 @@ import Loading from "../../../components/common/Loading";
 import ClientForm from "../ClientForm";
 import {setFormValidation} from "../../../helpers/helper";
 import * as clientListActions from '../clientListActions';
+import * as configActions from '../../config/configActions';
 
 // Import actions here!!
 
@@ -17,6 +18,11 @@ class CreateClientContainer extends React.Component {
             header: "Thêm khách hàng"
         };
         this.updateFormData = this.updateFormData.bind(this);
+        this.updateFormConfigsRequired = this.updateFormConfigsRequired.bind(this);
+    }
+
+    componentWillMount() {
+        this.props.configActions.getConfigsRequired();
     }
 
     componentDidMount() {
@@ -36,6 +42,12 @@ class CreateClientContainer extends React.Component {
         this.props.clientListActions.updateCreateClientFormData(client);
     }
 
+    updateFormConfigsRequired(event, data) {
+        var config = {...data};
+        config.value = event.target.value;
+        this.props.clientListActions.updateConfigsRequiredForm(config);
+    }
+
     render() {
         return (
             <div id="page-wrapper">
@@ -46,7 +58,7 @@ class CreateClientContainer extends React.Component {
                         </div>
                         <div className="card-content">
                             <h4 className="card-title">{this.state.header}</h4>
-                            {this.props.isLoadingClient ? (
+                            {this.props.isLoadingConfigsRequired ? (
                                 <div className="card-content">
                                     <Loading/>
                                 </div>
@@ -54,6 +66,8 @@ class CreateClientContainer extends React.Component {
                                 <ClientForm
                                     isSavingClient={this.props.isSavingClient}
                                     client={this.props.client}
+                                    configsRequired={this.props.configsRequired}
+                                    updateFormConfigsRequired={this.props.updateFormConfigsRequired}
                                     submit={this.submit}
                                     updateFormData={this.updateFormData}/>
                             )}
@@ -69,20 +83,24 @@ CreateClientContainer.propTypes = {
     client: PropTypes.object.isRequired,
     isSavingClient: PropTypes.bool.isRequired,
     clientListActions: PropTypes.object.isRequired,
-    isLoadingClient: PropTypes.bool.isRequired
+    configActions: PropTypes.object.isRequired,
+    isLoadingConfigsRequired: PropTypes.bool.isRequired,
+    configsRequired: PropTypes.array.isRequired
 };
 
 function mapStateToProps(state) {
     return {
         client: state.clientList.createClient.client,
         isSavingClient: state.clientList.createClient.isSavingClient,
-        isLoadingClient: state.clientList.createClient.isLoadingClient
+        isLoadingConfigsRequired: state.config.configsRequired.isLoadingConfigsRequired,
+        configsRequired: state.config.configsRequired.configs
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        clientListActions: bindActionCreators(clientListActions, dispatch)
+        clientListActions: bindActionCreators(clientListActions, dispatch),
+        configActions: bindActionCreators(configActions, dispatch)
     };
 }
 

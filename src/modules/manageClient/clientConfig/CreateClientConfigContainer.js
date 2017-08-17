@@ -32,7 +32,7 @@ class CreateClientConfigContainer extends React.Component {
                 this.props.clientConfigActions.loadClientConfig(this.props.params.clientConfigId);
             }
         }
-        let config = {...this.props.clientConfig};
+        let config = {};
         config.clientId = this.props.params.clientId;
         this.props.clientConfigActions.updateClientConfigFormData(config);
         this.props.configActions.loadConfigAll();

@@ -194,6 +194,10 @@ export default {
             isLoadingClientConfigs: false,
             totalPages: 1,
             currentPage: 1
+        },
+        configsRequired: {
+            configs: [],
+            isLoadingConfigsRequired: false
         }
     }
 

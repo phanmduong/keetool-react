@@ -147,3 +147,21 @@ export function deleteClientConfig(clientConfig) {
 
     };
 }
+
+export function getConfigsRequired() {
+    return function (dispatch) {
+        dispatch({
+            type: types.BEGIN_LOAD_CONFIGS_REQUIRED
+        });
+
+        configApi.loadConfigsRequired().then(function (res) {
+            dispatch({
+                type: types.LOAD_CONFIGS_REQUIRED_SUCCESS,
+                configsRequired: res.data.data,
+            });
+        }).catch(error => {
+            console.error(error);
+        });
+
+    };
+}

@@ -24,7 +24,7 @@ export function createClientConfig(clientConfig) {
             .then((res) => {
                 helper.showNotification(res.data.data.message);
                 helper.showNotification("Đang cập nhật đến client", 'top', 'right', 'info');
-                updateConfigToClient(clientConfig);
+                updateConfigToClient(clientConfig, dispatch);
             }).catch((err) => {
             helper.showNotification('Config đã được tạo', 'top', 'right', 'danger');
             dispatch({
@@ -35,7 +35,7 @@ export function createClientConfig(clientConfig) {
     };
 }
 
-export function updateConfigToClient(clientConfig) {
+export function updateConfigToClient(clientConfig, dispatch) {
     parallel([
             function (callback) {
                 clientConfigApi.writeEnv(clientConfig.clientId)
@@ -44,6 +44,7 @@ export function updateConfigToClient(clientConfig) {
                             callback(null, res.data);
                             helper.showNotification('Cập nhật env server thành công');
                         } else {
+                            console.log("error update env:", res.data);
                             helper.showNotification('Cập nhật env server lỗi', 'top', 'right', 'danger');
                             callback(res.data);
                         }
@@ -60,6 +61,7 @@ export function updateConfigToClient(clientConfig) {
                             callback(null, res.data);
                             helper.showNotification('Cập nhật env client thành công');
                         } else {
+                            console.log("error update env client:", res.data);
                             helper.showNotification('Cập nhật env client lỗi', 'top', 'right', 'danger');
                             callback(res.data);
                         }
@@ -76,6 +78,7 @@ export function updateConfigToClient(clientConfig) {
                             callback(null, res.data);
                             helper.showNotification('Cập nhật css thành công');
                         } else {
+                            console.log("error update css:", res.data);
                             helper.showNotification('Cập nhật css lỗi', 'top', 'right', 'danger');
                             callback(res.data);
                         }
@@ -86,19 +89,16 @@ export function updateConfigToClient(clientConfig) {
                 });
             }
         ],
-// optional callback
         function (err, results) {
             console.log("result update: ", results);
 
             if (err) {
                 helper.showNotification('Cập nhật xảy ra lỗi', 'top', 'right', 'danger');
-                console.log("error update:", err);
             }
-            return function (dispatch) {
-                dispatch({
-                    type: types.CREATE_CLIENT_CONFIG_SUCCESS
-                });
-            };
+
+            dispatch({
+                type: types.CREATE_CLIENT_CONFIG_SUCCESS
+            });
         });
 }
 
