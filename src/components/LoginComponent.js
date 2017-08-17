@@ -31,7 +31,7 @@ class LoginComponent extends React.Component {
                 <div className="wrapper wrapper-full-page">
                     <div className="full-page login-page">
                         <div className="full-page-background"
-                             style={{backgroundImage: "url(http://d2xbg5ewmrmfml.cloudfront.net/web/login.jpeg)"}}/>
+                             style={{backgroundImage: "url(https://d2xbg5ewmrmfml.cloudfront.net/web/login.jpeg)"}}/>
                         <div className="content">
                             <div className="container">
                                 <div className="row">
@@ -134,7 +134,7 @@ class LoginComponent extends React.Component {
                                     {
                                         new Date().getFullYear()
                                     }
-                                    <a href="http://keetool.com"> KEETOOL</a>
+                                    <a href="https://keetool.com"> KEETOOL</a>
                                 </p>
                             </div>
                         </footer>

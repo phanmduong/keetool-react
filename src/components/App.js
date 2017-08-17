@@ -15,7 +15,7 @@ class App extends React.Component {
         return (
             <div className="wrapper">
                 <div className="sidebar" data-active-color="rose" data-background-color="black"
-                     data-image="http://d1j8r0kxyu9tj8.cloudfront.net/libs/material/assets/img/sidebar-1.jpg">
+                     data-image="https://d1j8r0kxyu9tj8.cloudfront.net/libs/material/assets/img/sidebar-1.jpg">
                     <div className="logo">
                         <Link to="/" className="simple-text">
                             {NAME_COMPANY}
@@ -30,7 +30,7 @@ class App extends React.Component {
                         <div className="user">
                             <div className="photo">
                                 <img
-                                    src="http://d1j8r0kxyu9tj8.cloudfront.net/libs/material/assets/img/faces/avatar.jpg"/>
+                                    src="https://d1j8r0kxyu9tj8.cloudfront.net/libs/material/assets/img/faces/avatar.jpg"/>
                             </div>
                             <div className="info">
                                 <a data-toggle="collapse" href="#collapseExample" className="collapsed">
@@ -165,7 +165,7 @@ class App extends React.Component {
                                 {
                                     new Date().getFullYear()
                                 }
-                                <a href="http://keetool.com"> KEETOOL</a>
+                                <a href="https://keetool.com"> KEETOOL</a>
                             </p>
                         </div>
                     </footer>

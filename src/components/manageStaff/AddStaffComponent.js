@@ -161,7 +161,7 @@ class AddStaffComponent extends React.Component {
                                     <div className="card-avatar">
                                         <a>
                                             <img className="img"
-                                                 src="http://d1j8r0kxyu9tj8.cloudfront.net/images/1491311923hbSEUhRbABGfULT.jpg"/>
+                                                 src="https://d1j8r0kxyu9tj8.cloudfront.net/images/1491311923hbSEUhRbABGfULT.jpg"/>
                                         </a>
                                     </div>
                                     <div className="card-content">

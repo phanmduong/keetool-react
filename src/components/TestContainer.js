@@ -12,7 +12,7 @@ class TestContainer extends React.Component {
 
                     <div className="sidebar" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
                         <div className="logo">
-                            <a href="http://www.creative-tim.com" className="simple-text">
+                            <a href="https://www.creative-tim.com" className="simple-text">
                                 Creative Tim
                             </a>
                         </div>
@@ -614,8 +614,6 @@ class TestContainer extends React.Component {
                                 <p className="copyright pull-right">
                                     &copy;
                                     <script>document.write(new Date().getFullYear())</script>
-                                    <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better
-                                    web
                                 </p>
                             </div>
                         </footer>

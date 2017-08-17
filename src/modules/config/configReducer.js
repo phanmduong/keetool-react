@@ -2,9 +2,9 @@
  * Created by phanmduong on 4/6/17.
  */
 import * as types from '../../constants/actionTypes';
-import initialState from '../../reducers/initialState';
+import initialState from '../../reducers/initialState';åå
 
-var configs;
+var configs; // eslint-disable-line
 export default function configReducer(state = initialState.config, action) {
     switch (action.type) {
         case types.DELETE_CLIENT_CONFIG_SUCCESS:
