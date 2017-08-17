@@ -14,7 +14,7 @@ if (process.env.NODE_ENV === 'development'){
 
 export const API_URL = PROTOCOL + "api."+URL;
 export const MANAGE_API_URL = PROTOCOL + "manageapi."+URL;
-export const BASE_URL = PROTOCOL + ""+URL;
+export const BASE_URL = PROTOCOL +URL;
 
 export const NAME_COMPANY = "KEETOOL";
 export const LINK_LOGO_LIGHT = PROTOCOL + "d255zuevr6tr8p.cloudfront.net/logo/Artboard+5+copy.png";
