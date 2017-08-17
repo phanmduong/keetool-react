@@ -4,7 +4,7 @@
 import axios from 'axios';
 import * as env from '../../constants/env';
 
-export function createClient(client) {
+export function createClient(client, configs) {
     const {companyName, address, taxNumber, programName, ip} = client;
     let url = env.MANAGE_API_URL + "/client/create";
     const token = localStorage.getItem('token');
@@ -16,7 +16,8 @@ export function createClient(client) {
         address,
         tax_number: taxNumber,
         program_name: programName,
-        ip: ip
+        ip: ip,
+        configs: configs
     });
 }
 
@@ -46,6 +47,15 @@ export function pingClient(clientId) {
     let token = localStorage.getItem('token');
     if (token) {
         url += "?token=" + token;
+    }
+    return axios.get(url);
+}
+
+export function pingIP(ip) {
+    let url = env.MANAGE_API_URL + "/ping?ip="+ip;
+    let token = localStorage.getItem('token');
+    if (token) {
+        url += "&token=" + token;
     }
     return axios.get(url);
 }

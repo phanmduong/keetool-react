@@ -5,6 +5,7 @@ import * as types from '../../constants/actionTypes';
 import * as clientApi from './clientApi';
 import {browserHistory} from "react-router";
 import {showNotification} from "../../helpers/helper";
+import * as clientConfigActions from './clientConfig/clientConfigActions';
 
 // import _ from 'lodash';
 export function loadClients(page = 1, query = null) {
@@ -36,18 +37,19 @@ export function updateCreateClientFormData(client) {
 }
 
 
-export function createClient(client) {
+export function createClient(client, configs) {
     return function (dispatch) {
         dispatch({
             type: types.BEGIN_CREATE_CLIENT
         });
-        clientApi.createClient(client)
-            .then(() => {
+        clientApi.createClient(client, configs)
+            .then((res) => {
                 dispatch({
                     type: types.CREATE_CLIENT_SUCCESS
                 });
                 showNotification("Thêm khách hàng thành công");
-                browserHistory.push('/client/list');
+                dispatch(clientConfigActions.updateConfigToClient(res.data.data.client.id), dispatch);
+                // browserHistory.push('/client/list');
             });
     };
 }

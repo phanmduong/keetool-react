@@ -152,13 +152,16 @@ export default {
         errorLoadingTab: false,
         isLoadingUpdateTab: false,
         errorUpdateTab: false,
-        tabListData: []
+        tabListData: [],
+        ping: {
+            status: 1
+        }
     },
 
-    clientConfig:{
+    clientConfig: {
         isLoadingClientConfig: false,
         isSavingClientConfig: false,
-        clientConfig:{}
+        clientConfig: {}
     },
 
 

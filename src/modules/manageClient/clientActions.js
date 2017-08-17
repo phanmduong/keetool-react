@@ -5,16 +5,20 @@ import * as types from '../../constants/actionTypes';
 import * as clientApi from './clientApi';
 import * as helper from '../../helpers/helper';
 
+export function beginPingClient() {
+    return ({
+        type: types.BEGIN_PING_CLIENT,
+        status: 0
+    })
+}
 export function pingClient(id) {
     helper.showNotification("Đang kết nối")
     return function (dispatch) {
-        dispatch({
-            type: types.BEGIN_PING_CLIENT,
-        });
+        dispatch(beginPingClient());
         clientApi.pingClient(id).then(function (res) {
             dispatch(pingClientSuccess(res.data));
         }).catch(error => {
-            helper.showNotification("Kết nối thất bại");
+            helper.showNotification("Kết nối thất bại", 'top', 'right', 'danger');
             console.log(error);
         });
 
@@ -25,12 +29,26 @@ export function pingClientSuccess(data) {
     if (data.status && data.status === 1) {
         helper.showNotification("Kết nối thành công");
     } else {
-        helper.showNotification("Kết nối thất bại");
+        helper.showNotification("Kết nối thất bại", 'top', 'right', 'danger');
     }
     return ({
         type: types.PING_CLIENT_SUCCESS,
         status: data.status,
-    })
+    });
+}
+
+export function pingIP(ip) {
+    helper.showNotification("Đang kết nối");
+    return function (dispatch) {
+        dispatch(beginPingClient());
+        clientApi.pingIP(ip).then(function (res) {
+            dispatch(pingClientSuccess(res.data));
+        }).catch(error => {
+            helper.showNotification("Kết nối thất bại", 'top', 'right', 'danger');
+            console.log(error);
+        });
+
+    };
 }
 
 export function updateClient(id) {
