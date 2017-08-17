@@ -30,6 +30,7 @@
   "author": "KeeEducation",
   "license": "MIT",
   "dependencies": {
+    "async": "^2.5.0",
     "axios": "0.15.3",
     "chart.js": "1.1.1",
     "jquery": "3.2.1",

@@ -54,14 +54,14 @@ const ConfigForm = ({updateFormData, submit, isSavingClientConfig, type, clientC
                             type="button"
                             className="btn btn-rose disabled"
                         >
-                            <i className="fa fa-spinner fa-spin"/> {type === 'create' ? 'Đang thêm' : 'Đang sửa'}
+                            <i className="fa fa-spinner fa-spin"/> {type === 'create' ? 'Đang thêm' : 'Đang cập nhật'}
                         </button>
                     ) :
                     (
                         <button
                             type="submit"
                             className="btn btn-rose">
-                            {type === 'create' ? 'Thêm' : 'Sửa'}
+                            {type === 'create' ? 'Thêm' : 'Cập nhật'}
                         </button>
                     )}
             </div>

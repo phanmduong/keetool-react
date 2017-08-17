@@ -42,6 +42,10 @@ class CreateClientConfigContainer extends React.Component {
         setFormValidation('#client-config-form');
     }
 
+    componentDidUpdate(){
+        setFormValidation('#client-config-form');
+    }
+
     updateFormData(event) {
         const field = event.target.name;
         let config = {...this.props.clientConfig};

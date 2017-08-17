@@ -24,3 +24,30 @@ export function loadClientConfig(clientConfigId) {
     }
     return axios.get(url);
 }
+
+export function writeEnv(clientId) {
+    let url = env.MANAGE_API_URL + "/write-env/"+clientId;
+    const token = localStorage.getItem('token');
+    if (token) {
+        url += "?token=" + token;
+    }
+    return axios.get(url);
+}
+
+export function writeEnvClient(clientId) {
+    let url = env.MANAGE_API_URL + "/write-env-client/"+clientId;
+    const token = localStorage.getItem('token');
+    if (token) {
+        url += "?token=" + token;
+    }
+    return axios.get(url);
+}
+
+export function writeEnvCSS(clientId) {
+    let url = env.MANAGE_API_URL + "/write-css/"+clientId;
+    const token = localStorage.getItem('token');
+    if (token) {
+        url += "?token=" + token;
+    }
+    return axios.get(url);
+}

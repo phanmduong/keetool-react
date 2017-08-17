@@ -4,7 +4,7 @@
 import * as types from '../../../constants/actionTypes';
 import * as clientConfigApi from './clientConfigApi';
 import * as helper from '../../../helpers/helper';
-
+import parallel from 'async/parallel';
 
 export function updateClientConfigFormData(clientConfig) {
     return function (dispatch) {
@@ -23,9 +23,8 @@ export function createClientConfig(clientConfig) {
         clientConfigApi.addClientConfig(clientConfig)
             .then((res) => {
                 helper.showNotification(res.data.data.message);
-                dispatch({
-                    type: types.CREATE_CLIENT_CONFIG_SUCCESS
-                });
+                helper.showNotification("Đang cập nhật đến client", 'top', 'right', 'info');
+                updateConfigToClient(clientConfig);
             }).catch((err) => {
             helper.showNotification('Config đã được tạo', 'top', 'right', 'danger');
             dispatch({
@@ -34,6 +33,73 @@ export function createClientConfig(clientConfig) {
             console.log(err);
         });
     };
+}
+
+export function updateConfigToClient(clientConfig) {
+    parallel([
+            function (callback) {
+                clientConfigApi.writeEnv(clientConfig.clientId)
+                    .then((res) => {
+                        if (res.data.status === 1) {
+                            callback(null, res.data);
+                            helper.showNotification('Cập nhật env server thành công');
+                        } else {
+                            helper.showNotification('Cập nhật env server lỗi', 'top', 'right', 'danger');
+                            callback(res.data);
+                        }
+                    }).catch((error) => {
+                    helper.showNotification('Cập nhật env server lỗi', 'top', 'right', 'danger');
+                    console.log(error);
+                    callback(error, null);
+                });
+            },
+            function (callback) {
+                clientConfigApi.writeEnvClient(clientConfig.clientId)
+                    .then((res) => {
+                        if (res.data.status === 1) {
+                            callback(null, res.data);
+                            helper.showNotification('Cập nhật env client thành công');
+                        } else {
+                            helper.showNotification('Cập nhật env client lỗi', 'top', 'right', 'danger');
+                            callback(res.data);
+                        }
+
+                    }).catch((error) => {
+                    helper.showNotification('Cập nhật env client lỗi', 'top', 'right', 'danger');
+                    console.log(error);
+                    callback(error, null);
+                });
+            }, function (callback) {
+                clientConfigApi.writeEnvCSS(clientConfig.clientId)
+                    .then((res) => {
+                        if (res.data.status === 1) {
+                            callback(null, res.data);
+                            helper.showNotification('Cập nhật css thành công');
+                        } else {
+                            helper.showNotification('Cập nhật css lỗi', 'top', 'right', 'danger');
+                            callback(res.data);
+                        }
+                    }).catch((error) => {
+                    helper.showNotification('Cập nhật css lỗi', 'top', 'right', 'danger');
+                    console.log(error);
+                    callback(error, null);
+                });
+            }
+        ],
+// optional callback
+        function (err, results) {
+            console.log("result update: ", results);
+
+            if (err) {
+                helper.showNotification('Cập nhật xảy ra lỗi', 'top', 'right', 'danger');
+                console.log("error update:", err);
+            }
+            return function (dispatch) {
+                dispatch({
+                    type: types.CREATE_CLIENT_CONFIG_SUCCESS
+                });
+            };
+        });
 }
 
 export function loadClientConfig(clientConfigId) {
