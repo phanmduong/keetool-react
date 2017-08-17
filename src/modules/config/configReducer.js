@@ -122,7 +122,7 @@ export default function configReducer(state = initialState.config, action) {
                     configs: action.configsRequired
                 }
             };
-        case types.LOAD_CONFIGS_REQUIRED_SUCCESS:
+        case types.UPDATE_CONFIGS_REQUIRED_FORM:
             configs = changeConfigsRequired(state.configsRequired.configs, action.config);
             return {
                 ...state,
@@ -135,7 +135,8 @@ export default function configReducer(state = initialState.config, action) {
         default:
             return state;
     }
+}
 
-
-
+function changeConfigsRequired() {
+    
 }
