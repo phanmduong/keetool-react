@@ -6,6 +6,11 @@ import initialState from '../../reducers/initialState';
 
 export default function clientListReducer(state = initialState.clientList, action) {
     switch (action.type) {
+        case types.DELETE_CLIENT_SUCCESS:
+            return {
+                ...state,
+                clients: state.clients.filter(c => c.id !== action.client.id)
+            };
         case types.CREATE_CLIENT_SUCCESS:
             return {
                 ...state,
