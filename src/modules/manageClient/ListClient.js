@@ -38,7 +38,7 @@ class ListClient extends React.Component {
                                         delete={this.props.deleteClient}
                                         pingClient={this.props.pingClient}
                                         updateClient={this.props.updateClient}
-                                        object={client.id}
+                                        object={client}
                                     />
                                 </td>
                             </tr>

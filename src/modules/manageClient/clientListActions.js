@@ -57,10 +57,25 @@ export function createClient(client, configs) {
 export function updateConfigsRequiredForm(config) {
     return function (dispatch) {
         dispatch({
-           type: types.UPDATE_CONFIGS_REQUIRED_FORM,
+            type: types.UPDATE_CONFIGS_REQUIRED_FORM,
             config
         });
     };
+}
+
+export function deleteClient(client) {
+    return function (dispatch) {
+        dispatch({
+            type: types.DELETE_CLIENT_SUCCESS,
+            client
+        });
+        clientApi.deleteClient(client)
+            .then(() => {
+                showNotification("Xoá khách hàng thành công");
+                // browserHistory.push('/client/list');
+            });
+    };
+
 }
 
 
