@@ -25,12 +25,12 @@ class ButtonGroupActionClient extends React.Component {
                     <i className="material-icons">delete</i>
                 </a>
                 <a data-toggle="tooltip" title="Ping"
-                   onClick={() => this.props.pingClient(this.props.object)} type="button"
+                   onClick={() => this.props.pingClient(this.props.object.id)} type="button"
                    rel="tooltip">
                     <i className="material-icons">cast_connected</i>
                 </a>
                 <a data-toggle="tooltip" title="Update"
-                   onClick={() => this.props.updateClient(this.props.object)} type="button"
+                   onClick={() => this.props.updateClient(this.props.object.id)} type="button"
                    rel="tooltip">
                     <i className="material-icons">cloud_upload</i>
                 </a>
