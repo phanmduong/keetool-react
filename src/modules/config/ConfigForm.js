@@ -34,7 +34,7 @@ const ConfigForm = ({updateFormData, config, submit, isSavingConfig}) => {
                 value={isRequired || false}/>
 
             <Select
-                value={type || "server"}
+                value={type}
                 options={[
                     {key: "server", value: "server"},
                     {key: "client", value: "client"},
