@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux';
 // Import actions here!!
 import PropTypes from 'prop-types';
 import * as configActions from './configActions';
-import { setFormValidation} from '../../helpers/helper';
+import {setFormValidation, isEmptyInput, showTypeNotification} from '../../helpers/helper';
 import ConfigForm from "./ConfigForm";
 import Loading from "../../components/common/Loading";
 
@@ -47,7 +47,11 @@ class CreateConfigContainer extends React.Component {
 
     submit() {
         if ($("#config-form").valid()) {
-            this.props.configActions.createConfig(this.props.config);
+            if (isEmptyInput(this.props.config.type)) {
+                showTypeNotification("Vui lòng chọn loại config", 'warning');
+            } else {
+                this.props.configActions.createConfig(this.props.config);
+            }
         }
     }
 

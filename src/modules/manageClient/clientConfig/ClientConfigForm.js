@@ -46,7 +46,7 @@ const ConfigForm = ({updateFormData, submit, isSavingClientConfig, type, clientC
                 name="description"
                 updateFormData={updateFormData}
                 value={description}
-                required={true}/>
+            />
             <div>
                 {isSavingClientConfig ?
                     (
