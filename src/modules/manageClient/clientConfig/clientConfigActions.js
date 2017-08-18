@@ -23,8 +23,7 @@ export function createClientConfig(clientConfig) {
         clientConfigApi.addClientConfig(clientConfig)
             .then((res) => {
                 helper.showNotification(res.data.data.message);
-
-                updateConfigToClient(clientConfig.clientId);
+                dispatch(updateConfigToClient(clientConfig.clientId));
             }).catch((err) => {
             helper.showNotification('Config đã được tạo', 'top', 'right', 'danger');
             dispatch({
