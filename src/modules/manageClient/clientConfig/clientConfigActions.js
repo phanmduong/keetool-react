@@ -24,6 +24,9 @@ export function createClientConfig(clientConfig) {
             .then((res) => {
                 helper.showNotification(res.data.data.message);
                 dispatch(updateConfigToClient(clientConfig.clientId));
+                dispatch({
+                    type: types.CREATE_CLIENT_CONFIG_SUCCESS
+                });
             }).catch((err) => {
             helper.showNotification('Config đã được tạo', 'top', 'right', 'danger');
             dispatch({
@@ -36,72 +39,67 @@ export function createClientConfig(clientConfig) {
 
 export function updateConfigToClient(clientId) {
     helper.showNotification("Đang cập nhật đến client", 'top', 'right', 'info');
-    return function (dispatch) {
-        parallel([
-                function (callback) {
-                    clientConfigApi.writeEnv(clientId)
-                        .then((res) => {
-                            if (res.data.status === 1) {
-                                callback(null, res.data);
-                                helper.showNotification('Cập nhật env server thành công');
-                            } else {
-                                console.log("error update env:", res.data);
-                                helper.showNotification('Cập nhật env server lỗi', 'top', 'right', 'danger');
-                                callback(res.data);
-                            }
-                        }).catch((error) => {
-                        helper.showNotification('Cập nhật env server lỗi', 'top', 'right', 'danger');
-                        console.log(error);
-                        callback(error, null);
-                    });
-                },
-                function (callback) {
-                    clientConfigApi.writeEnvClient(clientId)
-                        .then((res) => {
-                            if (res.data.status === 1) {
-                                callback(null, res.data);
-                                helper.showNotification('Cập nhật env client thành công');
-                            } else {
-                                console.log("error update env client:", res.data);
-                                helper.showNotification('Cập nhật env client lỗi', 'top', 'right', 'danger');
-                                callback(res.data);
-                            }
-
-                        }).catch((error) => {
-                        helper.showNotification('Cập nhật env client lỗi', 'top', 'right', 'danger');
-                        console.log(error);
-                        callback(error, null);
-                    });
-                }, function (callback) {
-                    clientConfigApi.writeEnvCSS(clientId)
-                        .then((res) => {
-                            if (res.data.status === 1) {
-                                callback(null, res.data);
-                                helper.showNotification('Cập nhật css thành công');
-                            } else {
-                                console.log("error update css:", res.data);
-                                helper.showNotification('Cập nhật css lỗi', 'top', 'right', 'danger');
-                                callback(res.data);
-                            }
-                        }).catch((error) => {
-                        helper.showNotification('Cập nhật css lỗi', 'top', 'right', 'danger');
-                        console.log(error);
-                        callback(error, null);
-                    });
-                }
-            ],
-            function (err, results) {
-                console.log("result update: ", results);
-
-                if (err) {
-                    helper.showNotification('Cập nhật xảy ra lỗi', 'top', 'right', 'danger');
-                }
-
-                dispatch({
-                    type: types.CREATE_CLIENT_CONFIG_SUCCESS
+    parallel([
+            function (callback) {
+                clientConfigApi.writeEnv(clientId)
+                    .then((res) => {
+                        if (res.data.status === 1) {
+                            callback(null, res.data);
+                            helper.showNotification('Cập nhật env server thành công');
+                        } else {
+                            console.log("error update env:", res.data);
+                            helper.showNotification('Cập nhật env server lỗi', 'top', 'right', 'danger');
+                            callback(res.data);
+                        }
+                    }).catch((error) => {
+                    helper.showNotification('Cập nhật env server lỗi', 'top', 'right', 'danger');
+                    console.log(error);
+                    callback(error, null);
                 });
-            });
-    }
+            },
+            function (callback) {
+                clientConfigApi.writeEnvClient(clientId)
+                    .then((res) => {
+                        if (res.data.status === 1) {
+                            callback(null, res.data);
+                            helper.showNotification('Cập nhật env client thành công');
+                        } else {
+                            console.log("error update env client:", res.data);
+                            helper.showNotification('Cập nhật env client lỗi', 'top', 'right', 'danger');
+                            callback(res.data);
+                        }
+
+                    }).catch((error) => {
+                    helper.showNotification('Cập nhật env client lỗi', 'top', 'right', 'danger');
+                    console.log(error);
+                    callback(error, null);
+                });
+            }, function (callback) {
+                clientConfigApi.writeEnvCSS(clientId)
+                    .then((res) => {
+                        if (res.data.status === 1) {
+                            callback(null, res.data);
+                            helper.showNotification('Cập nhật css thành công');
+                        } else {
+                            console.log("error update css:", res.data);
+                            helper.showNotification('Cập nhật css lỗi', 'top', 'right', 'danger');
+                            callback(res.data);
+                        }
+                    }).catch((error) => {
+                    helper.showNotification('Cập nhật css lỗi', 'top', 'right', 'danger');
+                    console.log(error);
+                    callback(error, null);
+                });
+            }
+        ],
+        function (err, results) {
+            console.log("result update: ", results);
+
+            if (err) {
+                helper.showNotification('Cập nhật xảy ra lỗi', 'top', 'right', 'danger');
+            }
+        });
+
 
 }
 
