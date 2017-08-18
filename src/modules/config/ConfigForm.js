@@ -25,7 +25,7 @@ const ConfigForm = ({updateFormData, config, submit, isSavingConfig}) => {
                 name="description"
                 updateFormData={updateFormData}
                 value={description}
-                required={true}/>
+                required={false}/>
             <NewSwitch
                 name="isRequired"
                 onChange={updateFormData}
