@@ -59,6 +59,12 @@ export function showNotification(message, from = "top", align = "right", type = 
     });
 }
 
+export function showTypeNotification(message, type){
+    showNotification(message, 'top', 'right', type);
+}
+
+
+
 export function encodeToken(data) {
     return jwt.sign({
         data: data

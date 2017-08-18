@@ -3,6 +3,7 @@
  */
 import * as types from '../../constants/actionTypes';
 import * as clientApi from './clientApi';
+// import {browserHistory} from "react-router";
 import {showNotification} from "../../helpers/helper";
 import * as clientConfigActions from './clientConfig/clientConfigActions';
 

@@ -22,7 +22,7 @@ class Select extends React.Component {
                 onChange={this.props.onChange}
                 className="selectpicker"
                 data-style="btn btn-primary btn-round" data-size="7">
-                <option value="">{this.props.defaultMessage || "Please select"}</option>
+                <option disabled selected>{this.props.defaultMessage || "Please select"}</option>
                 {this.props.options.map((option, index) => {
                     return <option key={index} value={option.key}>{option.value}</option>;
                 })}
