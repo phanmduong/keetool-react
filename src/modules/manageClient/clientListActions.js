@@ -48,7 +48,7 @@ export function createClient(client, configs) {
                     type: types.CREATE_CLIENT_SUCCESS
                 });
                 showNotification("Thêm khách hàng thành công");
-                dispatch(clientConfigActions.updateConfigToClient(res.data.data.client.id), dispatch);
+                dispatch(clientConfigActions.updateConfigToClient(res.data.data.client.id));
                 // browserHistory.push('/client/list');
             });
     };
