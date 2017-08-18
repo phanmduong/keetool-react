@@ -63,6 +63,27 @@ export default function tabsReducer(state = initialState.client, action) {
                     tabListData: tabListData
                 }
             };
+        case types.PING_CLIENT_SUCCESS:
+            return {
+                ...state,
+                ...{
+                    ping: {
+                        ...state.ping,
+                        status: action.status
+                    }
+                }
+            };
+        case types.BEGIN_PING_CLIENT:
+            return {
+                ...state,
+                ...{
+                    ping: {
+                        ...state.ping,
+                        status: action.status
+                    }
+                }
+            };
+
         default:
             return state;
     }

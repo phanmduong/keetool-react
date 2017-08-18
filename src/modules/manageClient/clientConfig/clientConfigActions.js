@@ -23,8 +23,8 @@ export function createClientConfig(clientConfig) {
         clientConfigApi.addClientConfig(clientConfig)
             .then((res) => {
                 helper.showNotification(res.data.data.message);
-                helper.showNotification("Đang cập nhật đến client", 'top', 'right', 'info');
-                updateConfigToClient(clientConfig, dispatch);
+
+                updateConfigToClient(clientConfig.clientId, dispatch);
             }).catch((err) => {
             helper.showNotification('Config đã được tạo', 'top', 'right', 'danger');
             dispatch({
@@ -35,10 +35,11 @@ export function createClientConfig(clientConfig) {
     };
 }
 
-export function updateConfigToClient(clientConfig, dispatch) {
+export function updateConfigToClient(clientId, dispatch) {
+    helper.showNotification("Đang cập nhật đến client", 'top', 'right', 'info');
     parallel([
             function (callback) {
-                clientConfigApi.writeEnv(clientConfig.clientId)
+                clientConfigApi.writeEnv(clientId)
                     .then((res) => {
                         if (res.data.status === 1) {
                             callback(null, res.data);
@@ -55,7 +56,7 @@ export function updateConfigToClient(clientConfig, dispatch) {
                 });
             },
             function (callback) {
-                clientConfigApi.writeEnvClient(clientConfig.clientId)
+                clientConfigApi.writeEnvClient(clientId)
                     .then((res) => {
                         if (res.data.status === 1) {
                             callback(null, res.data);
@@ -72,7 +73,7 @@ export function updateConfigToClient(clientConfig, dispatch) {
                     callback(error, null);
                 });
             }, function (callback) {
-                clientConfigApi.writeEnvCSS(clientConfig.clientId)
+                clientConfigApi.writeEnvCSS(clientId)
                     .then((res) => {
                         if (res.data.status === 1) {
                             callback(null, res.data);

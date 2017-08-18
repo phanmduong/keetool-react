@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // import {Link} from "react-router";
 import ButtonGroupAction from '../../components/common/ButtonGroupAction';
 
-class ListConfigs extends React.Component {
+class ListClientConfigs extends React.Component {
     constructor(props, context) {
         super(props, context);
     }
@@ -46,6 +46,7 @@ class ListConfigs extends React.Component {
                                         editUrl={"client-config/" + this.props.clientId + '/' + config.id + "/edit"}
                                         delete={this.props.deleteClientConfig}
                                         object={config}
+                                        disabled={Boolean(config.is_required)}
                                     />
                                 </td>
                             </tr>
@@ -58,10 +59,10 @@ class ListConfigs extends React.Component {
     }
 }
 
-ListConfigs.propTypes = {
+ListClientConfigs.propTypes = {
     deleteClientConfig: PropTypes.func.isRequired,
     clientConfigs: PropTypes.array.isRequired,
-    clientId: PropTypes.number.isRequired
+    clientId: PropTypes.string.isRequired
 };
 
-export default ListConfigs;
+export default ListClientConfigs;

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FormInputText from "../../components/common/FormInputText";
 
-const ClientForm = ({updateFormData, client, submit, isSavingClient, configsRequired, updateFormConfigsRequired}) => {
+const ClientForm = ({updateFormData, client, submit, isSavingClient, configsRequired, updateFormConfigsRequired, ping, statusPing}) => {
 
     const {companyName, address, taxNumber, programName, ip} = client;
 
@@ -39,15 +39,43 @@ const ClientForm = ({updateFormData, client, submit, isSavingClient, configsRequ
                 required={true}
                 updateFormData={updateFormData}
                 value={programName}/>
-            <FormInputText
-                placeholder="Nhập địa chỉ IP"
-                label="Địa chỉ IP"
-                name="ip"
-                required={true}
-                updateFormData={updateFormData}
-                value={ip}/>
+            <div className="row">
+                <div className="col-md-10 .col-sm-10">
+                    <FormInputText
+                        placeholder="Nhập địa chỉ IP"
+                        label="Địa chỉ IP"
+                        name="ip"
+                        required={true}
+                        updateFormData={updateFormData}
+                        value={ip}/>
+                </div>
+                <div className="col-md-2 col-sm-2">
+                    {statusPing === 1 ?
+                        (
+                            <button
+                                type="button"
+                                className="btn btn-rose disabled"
+                            >
+                                Kiểm tra
+                            </button>
+                        )
+                        :
+                        (
+                            <button
+                                type="button"
+                                className="btn btn-rose"
+                                onClick={() => ping(ip)}
+                            >
+                                Kiểm tra
+                            </button>
+                        )
+
+                    }
+
+                </div>
+            </div>
             {
-                configsRequired.map((config)=>{
+                configsRequired.map((config) => {
                     return (
                         <FormInputText
                             key={config.id}
@@ -66,7 +94,7 @@ const ClientForm = ({updateFormData, client, submit, isSavingClient, configsRequ
                     (
                         <button
                             type="button"
-                            className="btn btn-primary disabled"
+                            className="btn btn-rose disabled"
                         >
                             <i className="fa fa-spinner fa-spin"/> Đang tải lên
                         </button>
@@ -74,7 +102,7 @@ const ClientForm = ({updateFormData, client, submit, isSavingClient, configsRequ
                     (
                         <button
                             type="submit"
-                            className="btn btn-primary">
+                            className="btn btn-rose">
                             Tải lên
                         </button>
                     )}
@@ -90,6 +118,7 @@ ClientForm.propTypes = {
     isSavingClient: PropTypes.bool.isRequired,
     updateFormData: PropTypes.func.isRequired,
     updateFormConfigsRequired: PropTypes.func.isRequired,
+    ping: PropTypes.func.isRequired,
     configsRequired: PropTypes.array.isRequired
 };
 

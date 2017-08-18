@@ -4,9 +4,11 @@ import {bindActionCreators} from 'redux';
 import PropTypes from 'prop-types';
 import Loading from "../../../components/common/Loading";
 import ClientForm from "../ClientForm";
-import {setFormValidation} from "../../../helpers/helper";
+import {setFormValidation, showNotification} from "../../../helpers/helper";
 import * as clientListActions from '../clientListActions';
+import * as clientActions from '../clientActions';
 import * as configActions from '../../config/configActions';
+
 
 // Import actions here!!
 
@@ -19,10 +21,14 @@ class CreateClientContainer extends React.Component {
         };
         this.updateFormData = this.updateFormData.bind(this);
         this.updateFormConfigsRequired = this.updateFormConfigsRequired.bind(this);
+        this.ping = this.ping.bind(this);
     }
 
     componentWillMount() {
         this.props.configActions.getConfigsRequired();
+        this.props.clientListActions.updateCreateClientFormData({});
+        //Xóa trạng thái status của ping
+        this.props.clientActions.beginPingClient();
     }
 
     componentDidMount() {
@@ -31,8 +37,16 @@ class CreateClientContainer extends React.Component {
 
     submit() {
         if ($("#client-form").valid()) {
-            this.props.clientListActions.createClient(this.props.client);
+            if (this.props.statusPing === 1) {
+                this.props.clientListActions.createClient(this.props.client, this.props.configsRequired);
+            } else {
+                showNotification("Kiểm tra tính chính xác của IP", 'top', 'right', 'warning');
+            }
         }
+    }
+
+    ping(ip){
+        this.props.clientActions.pingIP(ip);
     }
 
     updateFormData(event) {
@@ -67,7 +81,9 @@ class CreateClientContainer extends React.Component {
                                     isSavingClient={this.props.isSavingClient}
                                     client={this.props.client}
                                     configsRequired={this.props.configsRequired}
-                                    updateFormConfigsRequired={this.props.updateFormConfigsRequired}
+                                    updateFormConfigsRequired={this.updateFormConfigsRequired}
+                                    ping={this.ping}
+                                    statusPing={this.props.statusPing}
                                     submit={this.submit}
                                     updateFormData={this.updateFormData}/>
                             )}
@@ -84,7 +100,9 @@ CreateClientContainer.propTypes = {
     isSavingClient: PropTypes.bool.isRequired,
     clientListActions: PropTypes.object.isRequired,
     configActions: PropTypes.object.isRequired,
+    clientActions: PropTypes.object.isRequired,
     isLoadingConfigsRequired: PropTypes.bool.isRequired,
+    statusPing: PropTypes.number.isRequired,
     configsRequired: PropTypes.array.isRequired
 };
 
@@ -93,13 +111,15 @@ function mapStateToProps(state) {
         client: state.clientList.createClient.client,
         isSavingClient: state.clientList.createClient.isSavingClient,
         isLoadingConfigsRequired: state.config.configsRequired.isLoadingConfigsRequired,
-        configsRequired: state.config.configsRequired.configs
+        configsRequired: state.config.configsRequired.configs,
+        statusPing: state.client.ping.status
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         clientListActions: bindActionCreators(clientListActions, dispatch),
+        clientActions: bindActionCreators(clientActions, dispatch),
         configActions: bindActionCreators(configActions, dispatch)
     };
 }
