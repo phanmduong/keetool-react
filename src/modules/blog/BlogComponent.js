@@ -1,10 +1,10 @@
 import React from 'react';
 import FormInputText from '../../components/common/FormInputText';
 import FormInputSelect from '../../components/common/FormInputSelect';
-import {MARITAL} from '../../constants/constants';
+import {MARITAL, LINK_UPLOAD_IMAGE_EDITOR} from '../../constants/constants';
 import ReactEditor from '../../components/common/ReactEditor';
 import * as helper from '../../helpers/helper';
-import {PROTOCOL} from '../../constants/env';
+import {PROTOCOL, NO_IMAGE} from '../../constants/env';
 
 class BlogComponent extends React.Component {
     constructor(props, context) {
@@ -43,7 +43,7 @@ class BlogComponent extends React.Component {
                                         value={description}
                                     />
                                     <ReactEditor
-                                        urlPost="http://api.keetool.dev/upload-image-froala"
+                                        urlPost={LINK_UPLOAD_IMAGE_EDITOR}
                                         fileField="image"
                                         updateEditor={this.props.updateEditor}
                                         value={content}
@@ -81,7 +81,7 @@ class BlogComponent extends React.Component {
                             <div className="card-content"><h4 className="card-title">Thông tin về bài viết </h4>
                                 <img
                                     src={helper.isEmptyInput(imageUrl) ?
-                                        PROTOCOL + 'alhayat-altayba.com/images/empty.png' :
+                                        NO_IMAGE :
                                         PROTOCOL + imageUrl
                                     }/>
                                 {isUpdatingImage ?

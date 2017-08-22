@@ -1,3 +1,5 @@
+import * as env from './env';
+
 export const MARITAL = [
     {
         id: 0,
@@ -27,3 +29,5 @@ export const LITERACY = [
         name: 'Cao đẳng'
     }
 ];
+
+export const LINK_UPLOAD_IMAGE_EDITOR = env.API_URL + '/upload-image-froala';
