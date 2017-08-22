@@ -3,14 +3,16 @@ const DEV_URL = "keetool.dev";
 const PROD_PROTOCOL = "https://";
 const DEV_PROTOCOL = "http://";
 let URL;
-let PROTOCOL;
+let PROTOCOL_TYPE;
 if (process.env.NODE_ENV === 'development'){
     URL = DEV_URL;
-    PROTOCOL = DEV_PROTOCOL;
+    PROTOCOL_TYPE = DEV_PROTOCOL;
 } else {
     URL = PROD_URL;
-    PROTOCOL = PROD_PROTOCOL;
+    PROTOCOL_TYPE = PROD_PROTOCOL;
 }
+
+export const PROTOCOL = PROTOCOL_TYPE;
 
 export const API_URL = PROTOCOL + "api."+URL;
 export const MANAGE_API_URL = PROTOCOL + "manageapi."+URL;
@@ -24,3 +26,4 @@ export const SECRET_TOKEN = "KEEeducation";
 export const EXPIRES_IN = "6d";
 export const NAME_DATA_LOGIN_SAVE_LOCAL = "datatoken";
 export const NO_AVATAR = 'http://d2xbg5ewmrmfml.cloudfront.net/web/no-avatar.png';
+

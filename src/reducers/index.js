@@ -11,6 +11,7 @@ import clientListReducer from '../modules/manageClient/clientListReducer';
 import clientReducer from '../modules/manageClient/clientReducer';
 import clientConfigReducer from '../modules/manageClient/clientConfig/clientConfigReducer';
 import configReducer from '../modules/config/configReducer';
+import blogReducer from '../modules/blog/blogReducer';
 
 const appReducer = combineReducers({
     login: loginReducer,
@@ -24,6 +25,7 @@ const appReducer = combineReducers({
     clientList: clientListReducer,
     client: clientReducer,
     config: configReducer,
+    blog: blogReducer,
 });
 
 const rootReducer = (state, action) => {

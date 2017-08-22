@@ -21,6 +21,7 @@ import CreateBaseContainer from "./modules/bases/CreateBaseContainer";
 import ProjectListContainer from "./modules/tasks/project/ProjectListContainer";
 import CreateProjectContainer from "./modules/tasks/project/CreateProjectContainer";
 import BoardListContainer from "./modules/tasks/board/BoardListContainer";
+import BlogContainer from "./modules/blog/BlogContainer";
 
 export default (
     <Route>
@@ -68,6 +69,11 @@ export default (
             <Route path="/client-config/:clientId/create" component={CreateClientConfigContainer} type="create"/>
             <Route path="/client-config/:clientId/:clientConfigId/edit" component={CreateClientConfigContainer} type="edit"/>
             {/*End client config routes*/}
+
+            {/*Begin blog routes*/}
+            <Route path="/blog/new-post" component={BlogContainer} type="create"/>
+            {/*End blog routes*/}
+
         </Route>
         <Route path="login" component={LoginContainer}/>
         <Route path="*" component={NotFoundPage}/>

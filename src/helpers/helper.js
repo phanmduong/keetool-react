@@ -11,6 +11,10 @@ export function isEmptyInput(input) {
     return input === null || input === undefined || input.trim().length <= 0;
 }
 
+export function isEmptyNull(input) {
+    return input === null || input === undefined;
+}
+
 export function confirm(type, title, html, success, cancel) {
     swal({
         title,

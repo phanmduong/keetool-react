@@ -240,4 +240,19 @@ export default {
         isSavingClientConfig: false,
         clientConfig: {}
     },
+
+    blog:{
+        post: {
+            isUpdatingImage: false,
+            updateImageError: false,
+            imageUrl: '',
+            title: '',
+            description: '',
+            tags: '',
+            category: '',
+            content:'',
+            isSaving: false,
+            saveError: false,
+        }
+    }
 };
