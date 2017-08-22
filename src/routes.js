@@ -1,41 +1,34 @@
 import React from 'react';
 import {Route, IndexRoute} from 'react-router';
-import LoginContainer from './containers/LoginContainer';
-import AppContainer from './containers/AppContainer';
-import DashboardContainer from './containers/DashboardContainer';
-import RegisterListContainer from './containers/RegisterListContainer';
-import CollectMoneyContainer from './containers/financialManager/CollectMoneyContainer';
-import ManageStaffsContainer from './containers/manageStaff/ManageStaffsContainer';
-import AddStaffContainer from './containers/manageStaff/AddStaffContainer';
-import EditStaffContainer from './containers/manageStaff/EditStaffContainer';
-import ManageRoleContainer from './containers/role/ManageRoleContainer';
-import CreateRoleContainer from './containers/role/CreateRoleContainer';
-import EditRoleContainer from './containers/role/EditRoleContainer';
-import NotFoundPage from './components/NotFoundPage';
-import BasesContainer from "./modules/bases/BasesContainer";
-import CreateBaseContainer from "./modules/bases/CreateBaseContainer";
 import ClientContainer from "./modules/manageClient/ClientContainer";
 import EditClientContainer from "./modules/manageClient/client/EditInfoClientContainer";
 import EditConfigClientContainer from "./modules/manageClient/client/EditConfigClientContainer";
 import EditTabClientContainer from "./modules/manageClient/client/editTab/EditTabClientContainer";
-import ProjectListContainer from "./modules/tasks/ProjectListContainer";
-import CreateProjectContainer from "./modules/tasks/CreateProjectContainer";
-import BoardListContainer from "./modules/tasks/BoardListContainer";
 import CreateClientContainer from "./modules/manageClient/client/CreateClientContainer";
 import ConfigListContainer from "./modules/config/ConfigListContainer";
 import CreateConfigContainer from "./modules/config/CreateConfigContainer";
 import CreateClientConfigContainer from "./modules/manageClient/clientConfig/CreateClientConfigContainer";
-
+import LoginContainer from './modules/login/LoginContainer';
+import AppContainer from './containers/AppContainer';
+import ManageStaffsContainer from './modules/manageStaff/ManageStaffsContainer';
+import AddStaffContainer from './modules/manageStaff/AddStaffContainer';
+import ManageRoleContainer from './modules/role/ManageRoleContainer';
+import CreateRoleContainer from './modules/role/CreateRoleContainer';
+import EditRoleContainer from './modules/role/EditRoleContainer';
+import NotFoundPage from './components/NotFoundPage';
+import BasesContainer from "./modules/bases/BasesContainer";
+import CreateBaseContainer from "./modules/bases/CreateBaseContainer";
+import ProjectListContainer from "./modules/tasks/project/ProjectListContainer";
+import CreateProjectContainer from "./modules/tasks/project/CreateProjectContainer";
+import BoardListContainer from "./modules/tasks/board/BoardListContainer";
 
 export default (
     <Route>
         <Route path="/" component={AppContainer}>
-            <IndexRoute component={DashboardContainer}/>
-            <Route path="register-list" component={RegisterListContainer}/>
-            <Route path="collect-money" component={CollectMoneyContainer}/>
+            <IndexRoute component={ManageStaffsContainer}/>
             <Route path="manage/quan-li-nhan-su" component={ManageStaffsContainer}/>
-            <Route path="add-staff" component={AddStaffContainer}/>
-            <Route path="staff/:staffId/edit" component={EditStaffContainer}/>
+            <Route path="add-staff" component={AddStaffContainer} type="create"/>
+            <Route path="staff/:staffId/edit" component={AddStaffContainer} type="edit"/>
 
             {/*Begin Role route*/}
             <Route path="manage-role" component={ManageRoleContainer}/>

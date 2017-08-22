@@ -108,4 +108,8 @@ export function setFormValidation(id) {
     });
 }
 
+export function showErrorNotification(message) {
+    showNotification(message, "top", "right", "danger");
+}
+
 

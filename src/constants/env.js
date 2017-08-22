@@ -17,10 +17,10 @@ export const MANAGE_API_URL = PROTOCOL + "manageapi."+URL;
 export const BASE_URL = PROTOCOL +URL;
 
 export const NAME_COMPANY = "KEETOOL";
-export const LINK_LOGO_LIGHT = PROTOCOL + "d255zuevr6tr8p.cloudfront.net/logo/Artboard+5+copy.png";
-export const LINK_LOGO_DARK = PROTOCOL + "d255zuevr6tr8p.cloudfront.net/logo/Artboard+5.png";
-export const LINK_LOGO_LONG = PROTOCOL + "d255zuevr6tr8p.cloudfront.net/logo/logo_long.png";
+export const LOGO_SIDEBAR = PROTOCOL + "d255zuevr6tr8p.cloudfront.net/logo/Artboard+5+copy.png";
+export const LOGO_MAIN = PROTOCOL + "d255zuevr6tr8p.cloudfront.net/logo/Artboard+5.png";
+export const LOGO_LOGIN = PROTOCOL + "d255zuevr6tr8p.cloudfront.net/logo/logo_long.png";
 export const SECRET_TOKEN = "KEEeducation";
 export const EXPIRES_IN = "6d";
 export const NAME_DATA_LOGIN_SAVE_LOCAL = "datatoken";
-
+export const NO_AVATAR = 'http://d2xbg5ewmrmfml.cloudfront.net/web/no-avatar.png';

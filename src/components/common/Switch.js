@@ -9,9 +9,7 @@ class Switch extends React.Component {
 
 
     componentDidMount() {
-        if ($.material) {
-            $.material.init();
-        }
+        $.material.init();
     }
 
     handleInputChange(event) {
@@ -24,11 +22,10 @@ class Switch extends React.Component {
             <div className="togglebutton">
                 <label>
                     <input
-                        name={this.props.name}
                         type="checkbox"
                         checked={this.props.value}
                         onChange={this.handleInputChange}/>
-                    {this.props.value ? this.props.onText : this.props.offText}
+                    {this.props.value ? "Mở" : "Đóng"}
                 </label>
             </div>
         );
@@ -36,7 +33,6 @@ class Switch extends React.Component {
 }
 
 Switch.propTypes = {
-    name: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     value: PropTypes.bool.isRequired
 };

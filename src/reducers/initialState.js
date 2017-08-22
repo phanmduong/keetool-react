@@ -30,10 +30,6 @@ export default {
         }
     },
     user: {},
-    registerList: {
-        registers: [],
-        isLoading: false
-    },
     genList: {
         gens: [],
         isLoading: true
@@ -60,6 +56,8 @@ export default {
         staffListData: [],
         isLoading: false,
         error: false,
+        currentPage: 1,
+        totalPages: 1,
         addStaff: {
             staffForm: {
                 name: '',
@@ -72,10 +70,14 @@ export default {
                 marital: 0,
                 literacy: 0,
                 role: 0,
-                start_company: new Date().toISOString().slice(0, 10)
+                start_company: new Date().toISOString().slice(0, 10),
+                avatar_url: ''
             },
+            isChangingAvatar: false,
             isLoading: false,
-            error: false
+            error: false,
+            isLoadingStaff: false,
+            errorStaff: false,
         },
         editStaff: {
             isLoadingStaff: false,
@@ -92,9 +94,26 @@ export default {
         messageChangeBaseStaff: null,
         isLoadingChangeBaseStaff: false,
         errorChangeBaseStaff: false,
+        roles: {
+            roleListData: [],
+            isLoading: false,
+            error: false,
+        },bases: {
+            basesData: [],
+            isLoading: false,
+            error: false,
+        }
     },
     roles: {
         roleListData: [],
+        tabs:{
+            tabListData: [],
+            isLoading: true,
+            error: false,
+            allTabs: [],
+            isLoadingAllTabs: false,
+            errorAllTabs: false,
+        },
         isLoading: false,
         error: false,
         createRole: {
@@ -113,12 +132,6 @@ export default {
         isLoadingDeleteRole: false,
         errorDeleteRole: false
     },
-    base: {
-        baseData: [],
-        isLoading: false,
-        error: false,
-        selectedBaseId: -1
-    },
 
     baseList: {
         bases: [],
@@ -132,6 +145,70 @@ export default {
                 name: "",
                 address: ""
             }
+        }
+    },
+
+    task: {
+        createCard: {
+            card: {},
+            isSaving: false,
+            showModal: false,
+            board: {}
+        },
+
+        boardList: {
+            boards: [],
+            isLoadingBoards: false
+        },
+
+        createBoard: {
+            showModal: false,
+            board: {},
+            isSaving: false
+        },
+
+        createProject: {
+            project: {},
+            isLoadingProject: false,
+            isSavingProject: false
+        },
+
+        project: {
+            projects: [],
+            currentPage: 1,
+            totalPages: 1,
+            isLoadingProjects: false,
+            isSaving: false
+        }
+    },
+
+    register: {
+        registerList: {
+            registers: [],
+            isLoadingRegisters: false
+        }
+    },
+    config: {
+        configList: {
+            configs: [],
+            isLoadingConfigs: false,
+            currentPage: 1,
+            totalPages: 1
+        },
+        createConfig: {
+            config: {},
+            isLoadingConfig: false,
+            isSavingConfig: false
+        },
+        clientConfigList: {
+            clientConfigs: [],
+            isLoadingClientConfigs: false,
+            totalPages: 1,
+            currentPage: 1
+        },
+        configsRequired: {
+            configs: [],
+            isLoadingConfigsRequired: false
         }
     },
 
@@ -163,45 +240,4 @@ export default {
         isSavingClientConfig: false,
         clientConfig: {}
     },
-
-
-    task: {
-        createProject: {
-            project: {},
-            isLoadingProject: false,
-            isSavingProject: false
-        },
-        project: {
-            projects: [],
-            currentPage: 1,
-            totalPages: 1,
-            isLoadingProjects: false,
-            isSaving: false
-        }
-    },
-
-    config: {
-        configList: {
-            configs: [],
-            isLoadingConfigs: false,
-            currentPage: 1,
-            totalPages: 1
-        },
-        createConfig: {
-            config: {},
-            isLoadingConfig: false,
-            isSavingConfig: false
-        },
-        clientConfigList: {
-            clientConfigs: [],
-            isLoadingClientConfigs: false,
-            totalPages: 1,
-            currentPage: 1
-        },
-        configsRequired: {
-            configs: [],
-            isLoadingConfigsRequired: false
-        }
-    }
-
 };

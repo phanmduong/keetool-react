@@ -4,12 +4,11 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import App from '../components/App';
 // Import actions here!!
-import * as loginActions from '../actions/loginActions';
+import * as loginActions from '../modules/login/loginActions';
 import * as helper from '../helpers/helper';
 
 
 let self;
-
 class DashboardContainer extends React.Component {
     constructor(props, context) {
         super(props, context);
@@ -22,14 +21,12 @@ class DashboardContainer extends React.Component {
         this.props.loginActions.getUserLocal();
     }
 
-    checkToken() {
+    checkToken(){
         let tokenLocal = helper.getTokenLocal();
-        tokenLocal.then(function (err) {
-            if (err) {
-                self.onLogOut();
-            } else {
-                self.props.loginActions.getUserLocal();
-            }
+        tokenLocal.then(function () {
+            self.props.loginActions.getUserLocal();
+        }).catch(function () {
+            self.onLogOut();
         });
 
         let token = localStorage.getItem('token');
@@ -65,7 +62,7 @@ DashboardContainer.contextTypes = {
     router: PropTypes.object
 };
 
-DashboardContainer.propTypes = {
+DashboardContainer.propTypes={
     loginActions: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired
 };

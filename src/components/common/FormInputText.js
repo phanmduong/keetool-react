@@ -23,7 +23,7 @@ class FormInputText extends React.Component {
                             type={(this.props.type || 'text')}
                             className="form-control"
                             required={this.props.required}
-                            onChange={(event)=>this.props.updateFormData(event, this.props.data)}
+                            onChange={this.props.updateFormData}
                             name={this.props.name}
                             value={(this.props.value) ? this.props.value : ''}
                             disabled={this.props.disabled}
@@ -52,8 +52,8 @@ FormInputText.propTypes = {
     type: PropTypes.string,
     isNotValid: PropTypes.bool,
     errorMessage: PropTypes.string,
-    onKeyPress: PropTypes.func,
-    data: PropTypes.object
+    onKeyPress: PropTypes.func
+
 };
 
 export default FormInputText;
