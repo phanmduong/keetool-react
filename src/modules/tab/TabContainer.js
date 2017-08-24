@@ -53,7 +53,6 @@ class TabContainer extends React.Component {
         } else {
             return (
                 <ul className="nav">
-                    /* eslint-disable react/no-danger */
                     {this.props.tabsListData.map((tab, index) => {
                         let checkDropdown = false;
                         if (tab.parent_id === 0) {

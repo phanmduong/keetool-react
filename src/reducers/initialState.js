@@ -220,7 +220,9 @@ export default {
         createClient: {
             isSavingClient: false,
             isLoadingClient: false,
-            client: {}
+            client: {
+
+            }
         }
     },
 
