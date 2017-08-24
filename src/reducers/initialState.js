@@ -249,10 +249,22 @@ export default {
             title: '',
             description: '',
             tags: '',
-            category: '',
+            category: 0,
             content:'',
             isSaving: false,
             saveError: false,
+            isPreSaving: false,
+            preSaveError: false,
+        },
+        categories:{
+            categories: [],
+            isLoading: false,
+            error: false
+        },
+        category:{
+            name: '',
+            isCreating: false,
+            error: false,
         }
     }
 };

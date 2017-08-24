@@ -6,7 +6,7 @@ import * as clientApi from './clientApi';
 // import {browserHistory} from "react-router";
 import {showNotification} from "../../helpers/helper";
 import * as clientConfigActions from './clientConfig/clientConfigActions';
-
+/*eslint no-console: 0 */
 // import _ from 'lodash';
 export function loadClients(page = 1, query = null) {
     return function (dispatch) {

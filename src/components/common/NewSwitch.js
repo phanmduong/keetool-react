@@ -31,6 +31,8 @@ class Switch extends React.Component {
 
 Switch.propTypes = {
     name: PropTypes.string,
+    onText: PropTypes.string,
+    offText: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     value: PropTypes.oneOfType([
         PropTypes.number.isRequired,

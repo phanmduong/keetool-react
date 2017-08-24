@@ -4,7 +4,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import EditTabClientComponent from './EditTabClientComponent';
 import {bindActionCreators} from 'redux';
 import * as clientActions from '../../clientActions';
@@ -84,6 +84,7 @@ EditTabClientContainer.propTypes = {
     isLoadingUpdateTab: PropTypes.bool.isRequired,
     errorLoadingTab: PropTypes.bool.isRequired,
     tabListData: PropTypes.array.isRequired,
+    clientActions: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {

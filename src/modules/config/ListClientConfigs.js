@@ -21,7 +21,7 @@ class ListClientConfigs extends React.Component {
                         <th>Bắt buộc</th>
                         <th>Thêm vào lúc</th>
                         <th>Sửa gần nhất</th>
-                        <th></th>
+                        <th/>
                     </tr>
                     </thead>
                     <tbody>

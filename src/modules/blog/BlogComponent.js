@@ -1,22 +1,23 @@
 import React from 'react';
 import FormInputText from '../../components/common/FormInputText';
-import FormInputSelect from '../../components/common/FormInputSelect';
-import {MARITAL, LINK_UPLOAD_IMAGE_EDITOR} from '../../constants/constants';
+import {LINK_UPLOAD_IMAGE_EDITOR} from '../../constants/constants';
 import ReactEditor from '../../components/common/ReactEditor';
 import * as helper from '../../helpers/helper';
-import {PROTOCOL, NO_IMAGE} from '../../constants/env';
+import { NO_IMAGE} from '../../constants/env';
+import PropTypes from 'prop-types';
 
 class BlogComponent extends React.Component {
     constructor(props, context) {
         super(props, context);
     }
 
-    componentDidMount(){
+    componentDidMount() {
         helper.setFormValidation('#form-post');
+        helper.setFormValidation('#form-category');
     }
 
     render() {
-        let {title, description, content, imageUrl, tags, category, isUpdatingImage, isSaving} = this.props.post;
+        let {title, description, content, imageUrl, tags, category, isUpdatingImage, isSaving, isPreSaving} = this.props.post;
         return (
             <div>
                 <div className="row">
@@ -48,7 +49,25 @@ class BlogComponent extends React.Component {
                                         updateEditor={this.props.updateEditor}
                                         value={content}
                                     />
-                                    <button className="btn btn-fill btn-default">Xem thử</button>
+                                    {isPreSaving ?
+                                        (
+                                            <button className="btn btn-fill btn-default"
+                                                    type="button">
+                                                <i className="fa fa-spinner fa-spin disabled"/> Đang tạo bài viết
+                                            </button>
+                                        )
+                                        :
+                                        (
+                                            <button
+                                                className="btn btn-fill btn-default"
+                                                type="button"
+                                                onClick={this.props.preSavePost}
+                                            >
+                                                Xem thử
+                                            </button>
+                                        )
+
+                                    }
                                     {isSaving ?
                                         (
                                             <button className="btn btn-fill btn-rose"
@@ -81,8 +100,7 @@ class BlogComponent extends React.Component {
                             <div className="card-content"><h4 className="card-title">Thông tin về bài viết </h4>
                                 <img
                                     src={helper.isEmptyInput(imageUrl) ?
-                                        NO_IMAGE :
-                                        PROTOCOL + imageUrl
+                                        NO_IMAGE : imageUrl
                                     }/>
                                 {isUpdatingImage ?
                                     (
@@ -115,18 +133,29 @@ class BlogComponent extends React.Component {
                                 <div className="form-group"><label>Nhóm bài viết</label>
                                     <div className="row">
                                         <div className="col-md-9">
-                                            <FormInputSelect
-                                                data={MARITAL}
-                                                isNotForm
+                                            <select
+                                                className="form-control"
                                                 value={category}
-                                                name="category"
-                                                updateFormData={this.props.updateFormPostData}
-                                            />
+                                                onChange={this.props.updateFormPostData}
+                                                name="category">
+                                                {this.props.categories !== null && this.props.categories !== undefined &&
+                                                this.props.categories.map((item, key) => {
+                                                    return (
+                                                        <option
+                                                            key={key}
+                                                            value={item.value}
+                                                        >
+                                                            {item.text}
+                                                        </option>);
+                                                })}
+                                            </select>
                                         </div>
                                         <div className="col-md-3">
                                             <button type="button" className="btn btn-rose btn-sm"
                                                     data-toggle="modal"
-                                                    data-target="#addCategoryModal">
+                                                    data-target="#addCategoryModal"
+                                                    onClick={this.props.openModal}
+                                            >
                                                 <i className="material-icons">control_point</i>
                                             </button>
                                             <div className="modal fade" id="addCategoryModal"
@@ -144,11 +173,11 @@ class BlogComponent extends React.Component {
                                                         <div className="modal-body">
                                                             <form id="form-category">
                                                                 <FormInputText
-                                                                    label="Mô tả ngắn"
+                                                                    label="Tên nhóm bài viết"
                                                                     required
-                                                                    name="category"
-                                                                    updateFormData={() => {
-                                                                    }}
+                                                                    name="name"
+                                                                    updateFormData={this.props.updateFormCategory}
+                                                                    value={this.props.category.name}
                                                                 />
                                                             </form>
                                                         </div>
@@ -157,8 +186,24 @@ class BlogComponent extends React.Component {
                                                                     className="btn btn-danger btn-simple"
                                                                     data-dismiss="modal">Huỷ
                                                             </button>
-                                                            <button type="button" className="btn btn-rose">Thêm
-                                                            </button>
+                                                            {this.props.category.isCreating ?
+                                                                (
+                                                                    <button type="button"
+                                                                            className="btn btn-rose disabled">
+                                                                        <i className="fa fa-spinner fa-spin "/> Đang
+                                                                        thêm
+                                                                    </button>
+                                                                )
+                                                                :
+                                                                (
+                                                                    <button type="button" className="btn btn-rose"
+                                                                            onClick={this.props.createCategory}
+                                                                    >
+                                                                        Thêm
+                                                                    </button>
+                                                                )
+                                                            }
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -167,16 +212,19 @@ class BlogComponent extends React.Component {
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <input type="text" className="tagsinput" data-role="tagsinput" data-color="rose"
-                                           value={tags}
-                                           name="tags"
-                                           onChange={this.props.updateFormPostData}
-                                    />
+                                    <div className="col-md-12">
+                                        <input type="text" className="tagsinput" data-role="tagsinput" data-color="rose"
+                                               value={tags}
+                                               name="tags"
+                                               placeholder="Tags"
+                                               id="tags"
+                                        />
+                                    </div>
                                 </div>
                                 {isSaving ?
                                     (
-                                        <button className="btn btn-fill btn-rose"  type="button">
-                                            <i className="fa fa-spinner fa-spin disabled"/> Đang cập nhật
+                                        <button className="btn btn-fill btn-rose disabled" type="button">
+                                            <i className="fa fa-spinner fa-spin "/> Đang cập nhật
                                         </button>
                                     )
                                     :
@@ -199,5 +247,20 @@ class BlogComponent extends React.Component {
         );
     }
 }
+
+BlogComponent.propTypes = {
+    post: PropTypes.object.isRequired,
+    updateFormPostData: PropTypes.func.isRequired,
+    updateEditor: PropTypes.func.isRequired,
+    preSavePost: PropTypes.func.isRequired,
+    savePost: PropTypes.func.isRequired,
+    handleFileUpload: PropTypes.func.isRequired,
+    openModal: PropTypes.func.isRequired,
+    updateFormCategory: PropTypes.func.isRequired,
+    categories: PropTypes.array.isRequired,
+    category: PropTypes.object.isRequired,
+    createCategory: PropTypes.func.isRequired,
+};
+
 
 export default BlogComponent;

@@ -20,7 +20,7 @@ class ListClient extends React.Component {
                         <th>Tên chương trình</th>
                         <th>Mã số thuế</th>
                         <th>Địa chỉ IP</th>
-                        <th></th>
+                        <th/>
                     </tr>
                     </thead>
                     <tbody>

@@ -7,7 +7,7 @@ import {browserHistory} from "react-router";
 import {showNotification} from "../../helpers/helper";
 
 // import _ from 'lodash';
-
+/*eslint no-console: 0 */
 export function loadClientConfigs(clientId, page = 1, query = null) {
     return function (dispatch) {
         dispatch({

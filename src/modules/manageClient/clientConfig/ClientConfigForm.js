@@ -7,11 +7,11 @@ import 'react-select/dist/react-select.css';
 
 const ConfigForm = ({updateFormData, submit, isSavingClientConfig, type, clientConfig, configs, changeSelect, isLoadingConfigs}) => {
     const {description, value, configId} = clientConfig;
-    var options;
+    let options;
     if (isLoadingConfigs) {
         options = [
             {label: 'Đang tải'}
-        ]
+        ];
     } else {
         options = [];
     }

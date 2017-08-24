@@ -61,7 +61,7 @@ export default function rolesReducer(state = initialState.blog, action) {
                     }
                 }
             };
-            case types.BEGIN_SAVE_POST_BLOG:
+        case types.BEGIN_SAVE_POST_BLOG:
             return {
                 ...state,
                 ...{
@@ -74,7 +74,7 @@ export default function rolesReducer(state = initialState.blog, action) {
                     }
                 }
             };
-            case types.SAVE_POST_BLOG_SUCCESS:
+        case types.SAVE_POST_BLOG_SUCCESS:
             return {
                 ...state,
                 ...{
@@ -83,6 +83,7 @@ export default function rolesReducer(state = initialState.blog, action) {
                         ...{
                             isSaving: false,
                             saveError: false,
+                            id: action.postId,
                         }
                     }
                 }
@@ -96,6 +97,135 @@ export default function rolesReducer(state = initialState.blog, action) {
                         ...{
                             isSaving: false,
                             saveError: true,
+                        }
+                    }
+                }
+            };
+        case types.BEGIN_LOAD_CATEGORIES:
+            return {
+                ...state,
+                ...{
+                    categories: {
+                        ...state.categories,
+                        ...{
+                            isLoading: true,
+                            error: false,
+                        }
+                    }
+                }
+            };
+        case types.LOAD_CATEGORIES_SUCCESS:
+            return {
+                ...state,
+                ...{
+                    categories: {
+                        ...state.categories,
+                        ...{
+                            isLoading: false,
+                            error: false,
+                            categories: action.categories
+                        }
+                    }
+                }
+            };
+        case types.LOAD_CATEGORIES_ERROR:
+            return {
+                ...state,
+                ...{
+                    categories: {
+                        ...state.categories,
+                        ...{
+                            isLoading: false,
+                            error: true,
+                        }
+                    }
+                }
+            };
+        case types.BEGIN_CREATE_CATEGORY:
+            return {
+                ...state,
+                ...{
+                    category: {
+                        ...state.category,
+                        ...{
+                            isCreating: true,
+                            error: false,
+                        }
+                    }
+                }
+            };
+        case types.CREATE_CATEGORY_SUCCESS:
+            return {
+                ...state,
+                ...{
+                    category: {
+                        ...state.category,
+                        ...{
+                            isCreating: false,
+                            error: false,
+                        }
+                    }
+                }
+            };
+        case types.CREATE_CATEGORY_FAILED:
+            return {
+                ...state,
+                ...{
+                    category: {
+                        ...state.category,
+                        ...{
+                            isCreating: false,
+                            error: true,
+                        }
+                    }
+                }
+            };
+        case types.UPDATE_FORM_CREATE_CATEGORY:
+            return {
+                ...state,
+                ...{
+                    category: {
+                        ...state.category,
+                        name: action.category.name
+                    }
+                }
+            };
+        case types.BEGIN_PRE_SAVE_POST_BLOG:
+            return {
+                ...state,
+                ...{
+                    post: {
+                        ...state.post,
+                        ...{
+                            isPreSaving: true,
+                            preSaveError: false,
+                        }
+                    }
+                }
+            };
+        case types.PRE_SAVE_POST_BLOG_SUCCESS:
+            return {
+                ...state,
+                ...{
+                    post: {
+                        ...state.post,
+                        ...{
+                            isPreSaving: false,
+                            preSaveError: false,
+                            id: action.postId,
+                        }
+                    }
+                }
+            };
+        case types.PRE_SAVE_POST_BLOG_FAILED:
+            return {
+                ...state,
+                ...{
+                    post: {
+                        ...state.post,
+                        ...{
+                            isPreSaving: false,
+                            preSaveError: true,
                         }
                     }
                 }

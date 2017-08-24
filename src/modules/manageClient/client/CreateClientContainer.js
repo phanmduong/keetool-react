@@ -57,7 +57,7 @@ class CreateClientContainer extends React.Component {
     }
 
     updateFormConfigsRequired(event, data) {
-        var config = {...data};
+        let config = {...data};
         config.value = event.target.value;
         this.props.clientListActions.updateConfigsRequiredForm(config);
     }

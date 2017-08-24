@@ -48,8 +48,7 @@ class ReactEditor extends React.Component {
                 let ajax = new XMLHttpRequest();
                 ajax.addEventListener("load", (event) => {
                     let data = JSON.parse(event.currentTarget.response);
-                    console.log('http://' + data.link);
-                    var data1 = {
+                    let data1 = {
                         data: {
                             height: 250,
                             type: "image/jpeg",
@@ -58,7 +57,7 @@ class ReactEditor extends React.Component {
                         status: 200,
                         success: true
                     };
-                    data1.data.link = 'http://' + data.link;
+                    data1.data.link = data.link;
                     resolve(data1);
                 }, false);
                 ajax.open("POST", this.props.urlPost);
@@ -85,6 +84,7 @@ class ReactEditor extends React.Component {
                             height: '100%',
                             width: '100%',
                         },
+                        alt: { present: true, mandatory: true },
                     }
                 }}
                 onEditorStateChange={this.onEditorStateChange}
@@ -99,6 +99,6 @@ ReactEditor.propTypes = {
     fileField: PropTypes.string.isRequired,
     updateEditor: PropTypes.func.isRequired,
     value: PropTypes.string
-}
+};
 
 export default ReactEditor;

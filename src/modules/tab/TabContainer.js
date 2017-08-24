@@ -53,6 +53,7 @@ class TabContainer extends React.Component {
         } else {
             return (
                 <ul className="nav">
+                    /* eslint-disable react/no-danger */
                     {this.props.tabsListData.map((tab, index) => {
                         let checkDropdown = false;
                         if (tab.parent_id === 0) {
@@ -66,10 +67,11 @@ class TabContainer extends React.Component {
                                     <li key={"keytabpar" + index}>
                                         <a data-toggle="collapse"
                                            href={'#tab' + tab.id}>
-                                            <div dangerouslySetInnerHTML={{__html: tab.icon}}/>
+                                            {//eslint-disable-next-line
+                                            }<div dangerouslySetInnerHTML={{__html: tab.icon}}/>{/* eslint-disable-line>*/}
+
                                             <p>{tab.name}
-                                                <b className="caret">
-                                                </b>
+                                                <b className="caret" />
                                             </p>
                                         </a>
                                         <div className="collapse" id={'tab' + tab.id}>
@@ -98,7 +100,8 @@ class TabContainer extends React.Component {
                                     <li key={"keytabpar" + index}
                                         className={this.props.pathname === tab.url ? "active" : ""}>
                                         <Link to={tab.url} activeClassName="active">
-                                            <div dangerouslySetInnerHTML={{__html: tab.icon}}/>
+                                            {//eslint-disable-next-line
+                                            }<div dangerouslySetInnerHTML={{__html: tab.icon}}/>
                                             <p>{tab.name}</p>
                                         </Link>
                                     </li>

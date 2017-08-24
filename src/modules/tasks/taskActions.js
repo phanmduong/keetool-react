@@ -5,9 +5,8 @@ import * as types from '../../constants/actionTypes';
 import * as taskApi from "./taskApi";
 import {showErrorNotification, showNotification} from '../../helpers/helper';
 import {browserHistory} from 'react-router';
-
 // import _ from 'lodash';
-
+/*eslint no-console: 0 */
 export function changeProjectStatus(project, status) {
     return function (dispatch) {
         dispatch({

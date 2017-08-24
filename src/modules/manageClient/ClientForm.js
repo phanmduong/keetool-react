@@ -119,7 +119,8 @@ ClientForm.propTypes = {
     updateFormData: PropTypes.func.isRequired,
     updateFormConfigsRequired: PropTypes.func.isRequired,
     ping: PropTypes.func.isRequired,
-    configsRequired: PropTypes.array.isRequired
+    configsRequired: PropTypes.array.isRequired,
+    statusPing: PropTypes.number
 };
 
 export default ClientForm;
