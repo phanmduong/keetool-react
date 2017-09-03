@@ -5,7 +5,7 @@ import * as types from '../../../constants/actionTypes';
 import * as clientConfigApi from './clientConfigApi';
 import * as helper from '../../../helpers/helper';
 import parallel from 'async/parallel';
-
+/*eslint no-console: 0 */
 export function updateClientConfigFormData(clientConfig) {
     return function (dispatch) {
         dispatch({

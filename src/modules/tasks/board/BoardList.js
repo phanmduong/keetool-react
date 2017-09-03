@@ -40,16 +40,16 @@ class BoardList extends React.Component {
         this.drake.on('drop', function (el, target, source, sibling) {
 
             this.drake.cancel();
-            console.log(el);
-            console.log(target);
-            console.log(source);
-            console.log(sibling);
+            // console.log(el);
+            // console.log(target);
+            // console.log(source);
+            // console.log(sibling);
 
             let siblingOrder = -1;
             if (sibling) {
                 siblingOrder = Number(sibling.dataset.order);
             }
-            console.log(siblingOrder);
+            // console.log(siblingOrder);
 
             if (target !== source) {
                 // target.removeChild(el);

@@ -22,15 +22,14 @@ class AddStaffComponent extends React.Component {
     }
 
     render() {
-        let {name, email, age, address, homeland, phone, marital, literacy, role_id, start_company, username} = this.props.staffForm;
+        let {name, email, age, address, homeland, phone, marital, literacy, role_id, start_company, username, color} = this.props.staffForm;
         let roleSelect = this.props.roles.filter(function (roleData) {
             return role_id == roleData.id;
         })[0];
         if (roleSelect === undefined || roleSelect === null) {
             roleSelect = {};
         }
-        console.log(role_id);
-        var avatar = helper.isEmptyInput(this.props.staffForm.avatar_url) ?
+        let avatar = helper.isEmptyInput(this.props.staffForm.avatar_url) ?
             NO_AVATAR : this.props.staffForm.avatar_url;
         return (
             <div>
@@ -230,7 +229,10 @@ class AddStaffComponent extends React.Component {
                                     </div>
                                     <div className="card-content">
                                         <h4 className="card-title">Chọn màu</h4>
-                                        <CirclePicker width="100%"/>
+                                        <CirclePicker width="100%"
+                                                      color={color}
+                                                      onChangeComplete={this.props.changeColor}
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -246,6 +248,7 @@ class AddStaffComponent extends React.Component {
 AddStaffComponent.propTypes = {
     staffForm: PropTypes.object.isRequired,
     updateFormData: PropTypes.func.isRequired,
+    changeColor: PropTypes.func.isRequired,
     addStaff: PropTypes.func.isRequired,
     handleFileUpload: PropTypes.func.isRequired,
     isLoadingAddStaff: PropTypes.bool.isRequired,

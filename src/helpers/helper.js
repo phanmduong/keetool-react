@@ -43,7 +43,7 @@ export function alertStatus(title, message, status = "success") {
         type: status,
         buttonsStyling: false,
         confirmButtonClass: "btn btn-success"
-    })
+    });
 }
 
 export function showNotification(message, from = "top", align = "right", type = "success") {

@@ -43,8 +43,7 @@ class EditClientContainer extends React.Component {
                             </div>
                         </div>
                         <div className="card-content">
-                            <div className="tab-content">
-                            </div>
+                            <div className="tab-content"/>
                         </div>
                     </div>
                 </div>

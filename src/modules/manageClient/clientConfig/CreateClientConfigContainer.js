@@ -3,8 +3,6 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 // Import actions here!!
 import PropTypes from 'prop-types';
-
-import {setFormValidation} from '../../../helpers/helper';
 import ClientConfigForm from "./ClientConfigForm";
 import Loading from "../../../components/common/Loading";
 import * as configActions from '../../config/configActions';
@@ -39,11 +37,11 @@ class CreateClientConfigContainer extends React.Component {
     }
 
     componentDidMount() {
-        setFormValidation('#client-config-form');
+        helper.setFormValidation('#client-config-form');
     }
 
     componentDidUpdate(){
-        setFormValidation('#client-config-form');
+        helper.setFormValidation('#client-config-form');
     }
 
     updateFormData(event) {
@@ -78,7 +76,7 @@ class CreateClientConfigContainer extends React.Component {
             }
         } else {
             config.isRequired = false;
-            config.configId = 0
+            config.configId = 0;
         }
         this.props.clientConfigActions.updateClientConfigFormData(config);
     }

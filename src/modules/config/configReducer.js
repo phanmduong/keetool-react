@@ -147,7 +147,7 @@ function changeConfigsRequired(configs, configData) {
                 };
             }
             return config;
-        })
+        });
     }
     return configs;
 }

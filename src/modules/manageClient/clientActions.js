@@ -4,15 +4,15 @@
 import * as types from '../../constants/actionTypes';
 import * as clientApi from './clientApi';
 import * as helper from '../../helpers/helper';
-
+/*eslint no-console: 0 */
 export function beginPingClient() {
     return ({
         type: types.BEGIN_PING_CLIENT,
         status: 0
-    })
+    });
 }
 export function pingClient(id) {
-    helper.showNotification("Đang kết nối")
+    helper.showNotification("Đang kết nối");
     return function (dispatch) {
         dispatch(beginPingClient());
         clientApi.pingClient(id).then(function (res) {
@@ -52,7 +52,7 @@ export function pingIP(ip) {
 }
 
 export function updateClient(id) {
-    helper.showNotification("Đang cập nhật")
+    helper.showNotification("Đang cập nhật");
     return function (dispatch) {
         dispatch({
             type: types.BEGIN_UPDATE_CLIENT,
@@ -68,7 +68,7 @@ export function updateClient(id) {
 }
 
 export function updateClientSuccess(data) {
-    var output = "";
+    let output = "";
     data.output.forEach(function (line) {
         console.log(line);
         if (line.trim().length > 0) {

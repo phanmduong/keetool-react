@@ -30,4 +30,9 @@ export const LITERACY = [
     }
 ];
 
-export const LINK_UPLOAD_IMAGE_EDITOR = env.API_URL + '/upload-image-froala';
+const LINK_UPLOAD_IMAGE_EDITOR = env.MANAGE_API_URL + '/upload-image-editor';
+
+export function linkUploadImageEditor() {
+    let token = localStorage.getItem('token');
+    return LINK_UPLOAD_IMAGE_EDITOR + '?token=' + token;
+}

@@ -14,11 +14,12 @@ class Select extends React.Component {
     render() {
         return (
             <select
+                name={this.props.name}
                 value={this.props.value}
-                onChange={(event) => this.props.onChange(event.target.value)}
+                onChange={this.props.onChange}
                 className="selectpicker"
                 data-style="btn btn-primary btn-round" data-size="7">
-                <option disabled>{this.props.defaultMessage || "Please select"}</option>
+                <option selected disabled>{this.props.defaultMessage || "Please select"}</option>
                 {this.props.options.map((option, index) => {
                     return <option key={index} value={option.key}>{option.value}</option>;
                 })}
@@ -34,6 +35,7 @@ Select.propTypes = {
     options: PropTypes.array.isRequired,
     onChange: PropTypes.func.isRequired,
     defaultMessage: PropTypes.string,
+    name: PropTypes.string.isRequired
 };
 
 export default Select;

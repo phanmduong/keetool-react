@@ -141,7 +141,8 @@ ClientContainer.propTypes = {
     location: PropTypes.object.isRequired,
     totalPages: PropTypes.number.isRequired,
     currentPage: PropTypes.number.isRequired,
-    clientListActions: PropTypes.object.isRequired
+    clientListActions: PropTypes.object.isRequired,
+    clientActions: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state) {

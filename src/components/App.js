@@ -1,10 +1,10 @@
 import React from 'react';
-import {NAME_COMPANY, LOGO_SIDEBAR} from '../constants/env';
+import {NAME_COMPANY, LOGO_SIDEBAR, NO_AVATAR} from '../constants/env';
 import Loading from "./common/Loading";
 import PropTypes from 'prop-types';
 import TabContainer from "../modules/tab/TabContainer";
 import {Link} from 'react-router';
-
+import * as helper from '../helpers/helper';
 // This is a class-based component because the current
 // version of hot reloading won't hot reload a stateless
 // component at the top-level.
@@ -29,12 +29,15 @@ class App extends React.Component {
                         <div className="user">
                             <div className="photo">
                                 <img
-                                    src={this.props.user.avatar_url}/>
+                                    src={helper.isEmptyInput(this.props.user.avatar_url) ?
+                                        NO_AVATAR : this.props.user.avatar_url
+                                    }
+                                />
                             </div>
                             <div className="info">
                                 <a data-toggle="collapse" href="#collapseExample" className="collapsed">
                                     {this.props.user.name}
-                                    <b className="caret"></b>
+                                    <b className="caret"/>
                                 </a>
                                 <div className="collapse" id="collapseExample">
                                     <ul className="nav">
@@ -65,9 +68,9 @@ class App extends React.Component {
                             <div className="navbar-header">
                                 <button type="button" className="navbar-toggle" data-toggle="collapse">
                                     <span className="sr-only">Toggle navigation</span>
-                                    <span className="icon-bar"></span>
-                                    <span className="icon-bar"></span>
-                                    <span className="icon-bar"></span>
+                                    <span className="icon-bar"/>
+                                    <span className="icon-bar"/>
+                                    <span className="icon-bar"/>
                                 </button>
                                 <Link className="navbar-brand" to="/"> {NAME_COMPANY} </Link>
                             </div>
@@ -85,7 +88,7 @@ class App extends React.Component {
                                             <span className="notification">5</span>
                                             <p className="hidden-lg hidden-md">
                                                 Notifications
-                                                <b className="caret"></b>
+                                                <b className="caret"/>
                                             </p>
                                         </a>
                                         <ul className="dropdown-menu">
@@ -107,21 +110,22 @@ class App extends React.Component {
                                         </ul>
                                     </li>
                                     <li>
-                                        <a onClick={this.props.onLogOut} className="dropdown-toggle" data-toggle="dropdown">
+                                        <a onClick={this.props.onLogOut} className="dropdown-toggle"
+                                           data-toggle="dropdown">
                                             <i className="material-icons">exit_to_app</i>
                                             <p className="hidden-lg hidden-md">Profile</p>
                                         </a>
                                     </li>
-                                    <li className="separator hidden-lg hidden-md"></li>
+                                    <li className="separator hidden-lg hidden-md"/>
                                 </ul>
                                 <form className="navbar-form navbar-right" role="search">
                                     <div className="form-group form-search is-empty">
                                         <input type="text" className="form-control" placeholder="Search"/>
-                                        <span className="material-input"></span>
+                                        <span className="material-input"/>
                                     </div>
                                     <button type="submit" className="btn btn-white btn-round btn-just-icon">
                                         <i className="material-icons">search</i>
-                                        <div className="ripple-container"></div>
+                                        <div className="ripple-container"/>
                                     </button>
                                 </form>
                             </div>
@@ -179,7 +183,8 @@ App.propTypes = {
     children: PropTypes.element,
     pathname: PropTypes.string.isRequired,
     user: PropTypes.object.isRequired,
-    onLogOut: PropTypes.func.isRequired
+    onLogOut: PropTypes.func.isRequired,
+    isLoadingTab: PropTypes.bool
 };
 
 export default App;
