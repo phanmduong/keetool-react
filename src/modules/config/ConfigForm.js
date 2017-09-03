@@ -38,6 +38,7 @@ const ConfigForm = ({updateFormData, config, submit, isSavingConfig}) => {
                 options={[
                     {key: "server", value: "server"},
                     {key: "client", value: "client"},
+                    {key: "server_socket", value: "server_socket"},
                     {key: "css", value: "css"}
                 ]}
                 defaultMessage="Chọn loại config"
