@@ -29,6 +29,11 @@ class DashboardContainer extends React.Component {
             self.onLogOut();
         });
 
+        let user = JSON.parse(localStorage.getItem('user'));
+        if (user === null || user.role === null || user.role === 0){
+            this.onLogOut();
+        }
+
         let token = localStorage.getItem('token');
         if (token === null || token.trim() === '') {
             this.onLogOut();

@@ -67,8 +67,6 @@ export function showTypeNotification(message, type){
     showNotification(message, 'top', 'right', type);
 }
 
-
-
 export function encodeToken(data) {
     return jwt.sign({
         data: data
@@ -76,13 +74,14 @@ export function encodeToken(data) {
 }
 
 export function decodeToken(token) {
-    return new Promise(function (resolve) {
+    return new Promise(function (resolve, reject) {
         jwt.verify(token, env.SECRET_TOKEN, function (err, decoded) {
-
-
-            resolve(err, decoded);
-
-
+            console.log('err' + err);
+            console.log(decoded);
+            if (err) {
+                reject(err);
+            }
+            resolve(decoded);
         });
     });
 }
@@ -97,9 +96,13 @@ export function removeDataLoginLocal() {
 
 export function getTokenLocal() {
     let dataLocal = decodeToken(localStorage.getItem(env.NAME_DATA_LOGIN_SAVE_LOCAL));
-    return new Promise(function (resolve) {
-        dataLocal.then(function (err, data) {
-            resolve(err, data);
+    return new Promise(function (resolve, reject) {
+        dataLocal.then(function (data) {
+            if (data) {
+                resolve(data.token);
+            }
+        }).catch(function () {
+            reject(null);
         });
     });
 }
