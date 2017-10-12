@@ -82,9 +82,8 @@ const ClientForm = ({updateFormData, client, submit, isSavingClient, configsRequ
                             label={config.name + " - " + config.type}
                             name="ip"
                             required={true}
-                            updateFormData={updateFormConfigsRequired}
+                            updateFormData={(event)=> {updateFormConfigsRequired(event, config)}}
                             value={config.value}
-                            data={config}
                         />
                     );
                 })
