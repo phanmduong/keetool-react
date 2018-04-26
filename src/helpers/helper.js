@@ -15,6 +15,21 @@ export function isEmptyNull(input) {
     return input === null || input === undefined;
 }
 
+export function avatarEmpty(input) {
+    if (isEmptyInput(input) || input.trim() === 'http://' || input.trim() === 'https://') {
+        return true;
+    }
+    return false;
+}
+
+export function getShortName(name) {
+    if (isEmptyInput(name)) return null;
+    let n = name.trim().split(" ");
+    if (n.length > 1)
+        return n[n.length - 2] + ' ' + n[n.length - 1];
+    return name;
+}
+
 export function confirm(type, title, html, success, cancel) {
     swal({
         title,
