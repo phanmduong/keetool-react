@@ -25,6 +25,7 @@ const appReducer = combineReducers({
     clientList: clientListReducer,
     client: clientReducer,
     config: configReducer,
+    
     blog: blogReducer,
 });
 
