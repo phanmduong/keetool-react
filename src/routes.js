@@ -23,6 +23,7 @@ import CreateProjectContainer from "./modules/tasks/project/CreateProjectContain
 import BoardListContainer from "./modules/tasks/board/BoardListContainer";
 import BlogContainer from "./modules/blog/BlogContainer";
 import IssuesContainer from "./modules/issues/IssuesContainer";
+import FreeTrialClientComponent from "./modules/freeTrial/FreeTrialClientComponent";
 
 export default (
     <Route>
@@ -58,6 +59,7 @@ export default (
             <Route path="/client/:clientId/info/edit" component={EditClientContainer} />
             <Route path="/client/:clientId/tab/edit" component={EditTabClientContainer} />
             <Route path="/client/:clientId/config/edit" component={EditConfigClientContainer} />
+            <Route path="/client/free-trial" component={FreeTrialClientComponent} />
             {/*End clients route*/}
 
             {/*Begin config routes*/}
