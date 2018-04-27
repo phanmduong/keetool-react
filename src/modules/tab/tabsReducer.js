@@ -64,4 +64,3 @@ export default function tabsReducer(state = initialState.tabs, action) {
             return state;
     }
 }
-
